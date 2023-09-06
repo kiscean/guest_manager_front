@@ -8,6 +8,7 @@ import './style.css';
 const RegEnter = () => {
     return (
         <div>
+
             <Scanner />
             <Table_Reg_Enter />
         </div>
