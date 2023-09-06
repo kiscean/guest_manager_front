@@ -1,13 +1,19 @@
-import React from "react";
+import React from 'react';
+import {NavLink} from "react-router-dom";
+
+import {Layout, Space} from "antd";
 
 import './style.css';
 
 const Header = () => {
+    const { Header } = Layout;
     return (
-        <div>
-            Header
-        </div>
+        <Header className="header">
+            <Space direction="horizontal">
+                Header
+            </Space>
+        </Header>
     );
-}
+};
 
 export default Header;

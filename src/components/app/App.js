@@ -7,6 +7,7 @@ import Home from "../../pages/Home";
 import Introduction from "../../pages/Introduction";
 import Invitation from "../../pages/Invitation";
 import RegEnter from "../../pages/RegEnter";
+import Footer from "../footer/Footer";
 
 import './style.css';
 
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/invitation" element={<Invitation />} />
                 <Route path="/regenter" element={<RegEnter />} />
             </Routes>
+            <Footer />
         </Router>
     </div>
   );
