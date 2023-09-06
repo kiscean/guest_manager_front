@@ -1,8 +1,9 @@
 import React from "react";
 
-import './style.css';
 import Scanner from "../components/scanner/Scanner";
 import Table_Reg_Enter from "../components/tables_reg_enter/Table_Reg_Enter";
+
+import './style.css';
 
 const RegEnter = () => {
     return (
