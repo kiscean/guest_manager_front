@@ -39,10 +39,14 @@ const Scanner = () => {
         })
     }, [isEnabled])
     return (
-        <div className='scanner'>
-            <div id='qrCodeContainer'></div>
-            {qrMessage && <div className='qr-message'>{qrMessage}</div>}
-            <Button type='primary' size='large' onClick={() => setEnabled(!isEnabled)}>{isEnabled ? "Включить" : "Выключить"}</Button>
+        <div>
+            <div className='scanner'>
+                <div id='qrCodeContainer'></div>
+                {qrMessage && <div className='qr-message'>{qrMessage}</div>}
+            </div>
+            <div className='button-center'>
+                <Button className='scaner__button' danger type='primary' size='large' onClick={() => setEnabled(!isEnabled)}>{isEnabled ? "Сканировать" : "Остановить"}</Button>
+            </div>
         </div>
     );
 }
