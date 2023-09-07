@@ -15,9 +15,7 @@ const Header = () => {
                     <a href="#">
                         <img  src={logo} alt="main_logo" className="header__logo-link"/>
                     </a>
-                    <span className="header__logo-description">
-                        <h2>ГОСТЕВОЙ МЕНЕДЖЕР</h2>
-                    </span>
+                    <p className="header__logo-description">ГОСТЕВОЙ МЕНЕДЖЕР</p>
                 </Space>
             </Space>
         </Header>

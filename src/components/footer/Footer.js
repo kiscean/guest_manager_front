@@ -8,8 +8,8 @@ import './Footer.css';
 const Footer = () => {
     const { Footer } = Layout;
     return (
-        <Footer>
-            Footer
+        <Footer className='footer'>
+            ©2023 Гостевой менедер
         </Footer>
     );
 };
