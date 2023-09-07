@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 
 import {Html5Qrcode} from "html5-qrcode";
 
-import './style.css';
+import './Scanner.css';
 import {Button} from "antd";
 
 const Scanner = () => {
@@ -39,7 +39,8 @@ const Scanner = () => {
         })
     }, [isEnabled])
     return (
-        <div>
+        <div className='container'>
+            <h3 className='scanner-title'>Сканер QR кодов</h3>
             <div className='scanner'>
                 <div id='qrCodeContainer'></div>
                 {qrMessage && <div className='qr-message'>{qrMessage}</div>}
