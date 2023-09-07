@@ -1,0 +1,61 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat'), url('./Montserrat-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat'),
+    url('./Montserrat-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat'), url('./Montserrat-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat'),
+    url('./Montserrat-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat'), url('./Montserrat-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat'),
+    url('./Montserrat-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MontserratItalic';
+  src: local('Montserrat'),
+  url('./Montserrat-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratItalic';
+  src: local('Montserrat'),
+  url('./Montserrat-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MontserratItalic';
+  src: local('Montserrat'),
+  url('./Montserrat-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
