@@ -8,3 +8,9 @@
     left: 0;
     top: 0;
 }
+
+.header__logo-link {
+    margin-top: 4px;
+    height: 42px;
+    width: 42px;
+}
