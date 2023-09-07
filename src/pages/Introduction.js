@@ -1,6 +1,7 @@
 import React from "react";
 
-import Introreg from "../components/introduction/Introreg";
+import TableIntroreg from "../components/table_introreg/TableIntroreg";
+import RegForm from "../components/reg_form/RegForm";
 import QRcode_Generator from "../components/qrcode_generator/QrCodeGenerator";
 
 import './style.css';
@@ -8,8 +9,8 @@ import './style.css';
 const Introduction = () => {
     return (
         <div>
-            <Introreg />
-            <QRcode_Generator />
+            <RegForm />
+            <TableIntroreg />
         </div>
     );
 }
