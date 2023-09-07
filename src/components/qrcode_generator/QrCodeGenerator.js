@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import QRCode from 'qrcode';
 import {Button, Input} from "antd";
 
-import './style.css';
+import './QrCodeGenerator.css';
 
 const QrCodeGenerator = () => {
 

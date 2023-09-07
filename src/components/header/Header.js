@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 
 import {Layout, Space} from "antd";
 
-import './style.css';
+import './Header.css';
 
 const Header = () => {
     const { Header } = Layout;

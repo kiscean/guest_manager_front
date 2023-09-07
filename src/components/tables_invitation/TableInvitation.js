@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 
-import {CheckOutlined, SearchOutlined} from '@ant-design/icons';
+import {DeleteOutlined, SearchOutlined} from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 
-import './style.css';
+import './TableInvitation.css';
 
 const data = [
     {
@@ -12,6 +12,7 @@ const data = [
         lastname: 'Петроф',
         firstname: 'Иван',
         middlename: 'Васильевич',
+        email: 'company@company.com',
         phone: 89112265874,
         status: 'guest',
         regtime: '16:40',
@@ -21,6 +22,7 @@ const data = [
         lastname: 'Федоров',
         firstname: 'Юрий',
         middlename: 'Геннадьевич',
+        email: 'company@company.com',
         phone: 89112265874,
         status: 'speacker',
         regtime: '12:10',
@@ -30,6 +32,7 @@ const data = [
         lastname: 'Маркин',
         firstname: 'Сергей',
         middlename: 'Владимирович',
+        email: 'company@company.com',
         phone: 89112265874,
         status: 'guest',
         regtime: '13:20',
@@ -39,6 +42,7 @@ const data = [
         lastname: 'Астафьева',
         firstname: 'Нина',
         middlename: 'Илларионовна',
+        email: 'company@company.com',
         phone: 89112265874,
         status: 'speacker',
         regtime: '12:10',
@@ -48,6 +52,7 @@ const data = [
         lastname: 'Савина',
         firstname: 'Юлианна',
         middlename: 'Васильевна',
+        email: 'company@company.com',
         phone: 89112265874,
         status: 'speacker',
         regtime: '11:10',
@@ -57,15 +62,14 @@ const data = [
         lastname: 'Сомов',
         firstname: 'Федор',
         middlename: 'Геннадьевич',
+        email: 'company@company.com',
         phone: 89112265874,
         status: 'speacker',
         regtime: '12:19',
     },
 ];
 
-
-
-const Table_Reg_Enter = () => {
+const TableInvitation = () => {
 
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
@@ -190,6 +194,11 @@ const Table_Reg_Enter = () => {
             ),
         },
         {
+            title: 'Эл.почта',
+            dataIndex: 'email',
+            key: 'email',
+        },
+        {
             title: 'Телефон',
             dataIndex: 'phone',
             key: 'phone',
@@ -202,23 +211,19 @@ const Table_Reg_Enter = () => {
             width: '15%',
         },
         {
-            title: 'Время регистрации',
-            dataIndex: 'regtime',
-            key: 'regtime',
-            sorter: true,
-            width: '10%',
-        },
-        {
-            title: 'Вход',
-            render: () => <CheckOutlined />,
-            width: '40px',
+            title: 'Действие',
+            render: () => (
+                <Space>
+                    <Button type='primary'>Пригласить</Button> <Button type="primary" danger ghost><DeleteOutlined /></Button>
+                </Space>
+            ),
             align: 'center',
         },
     ];
 
     return (
         <div className='container'>
-            <h3>Прошедшие регистрацию</h3>
+            <h3>Отправка приглашений</h3>
             <Table
                 columns={columns}
                 dataSource={data}
@@ -230,4 +235,4 @@ const Table_Reg_Enter = () => {
     );
 }
 
-export default Table_Reg_Enter;
+export default TableInvitation;

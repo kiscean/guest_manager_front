@@ -1,13 +1,13 @@
 import React from "react";
 
-import Table_Invitation from "../components/tables_invitation/Table_Invitation";
+import TableInvitation from "../components/tables_invitation/TableInvitation";
 
 import './style.css';
 
 const Invitation = () => {
     return (
         <div>
-            <Table_Invitation />
+            <TableInvitation />
         </div>
     );
 }

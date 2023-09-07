@@ -9,7 +9,7 @@ import Invitation from "../../pages/Invitation";
 import RegEnter from "../../pages/RegEnter";
 import Footer from "../footer/Footer";
 
-import './style.css';
+import './App.css';
 
 function App() {
   return (

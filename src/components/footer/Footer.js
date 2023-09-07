@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 
 import {Layout} from "antd";
 
-import './style.css';
+import './Footer.css';
 
 const Footer = () => {
     const { Footer } = Layout;

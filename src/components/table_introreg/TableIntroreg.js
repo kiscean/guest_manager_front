@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Space, Table} from "antd";
 
-import './style.css';
+import './TableIntroreg.css';
 
 const data = [
     {
@@ -104,12 +104,12 @@ const TableIntroreg = () => {
 
     return (
         <div className='container'>
-            <h3>Внесены в базу</h3>
+            <h3>Занесены в базу</h3>
             <Table
                 columns={columns}
                 dataSource={data}
                 scroll={{
-                    x: 600,
+                    x: 500,
                 }}
             />
         </div>
