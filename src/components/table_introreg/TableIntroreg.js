@@ -86,11 +86,13 @@ const TableIntroreg = () => {
         },
         {
             title: 'Эл.почта',
+            className: 'column-display',
             dataIndex: 'email',
             key: 'email',
         },
         {
             title: 'Телефон',
+            className: 'column-display',
             dataIndex: 'phone',
             key: 'phone',
         },
@@ -110,7 +112,7 @@ const TableIntroreg = () => {
                 columns={columns}
                 dataSource={data}
                 scroll={{
-                    x: 500,
+                    x: 350,
                 }}
             />
         </div>

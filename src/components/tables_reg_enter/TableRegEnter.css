@@ -7,3 +7,9 @@
 .table {
     padding-bottom: 7ch;
 }
+
+@media screen and (max-width: 900px) {
+    .column-display {
+        display: none;
+    }
+}

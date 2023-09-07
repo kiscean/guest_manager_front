@@ -12,7 +12,7 @@ const { Option } = Select;
 const formItemLayout = {
     labelCol: {
         xs: {
-            span: 24,
+            span: 6,
         },
         sm: {
             span: 8,
@@ -23,14 +23,14 @@ const formItemLayout = {
             span: 24,
         },
         sm: {
-            span: 16,
+            span: 13,
         },
     },
 };
 const tailFormItemLayout = {
     wrapperCol: {
         xs: {
-            span: 24,
+            span: 5,
             offset: 0,
         },
         sm: {

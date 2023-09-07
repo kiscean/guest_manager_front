@@ -191,6 +191,7 @@ const TableRegEnter = () => {
         },
         {
             title: 'Телефон',
+            className: 'column-display',
             dataIndex: 'phone',
             key: 'phone',
         },
@@ -210,6 +211,7 @@ const TableRegEnter = () => {
         },
         {
             title: 'Вход',
+            className: 'column-display',
             render: () => <CheckOutlined />,
             width: '40px',
             align: 'center',
@@ -224,7 +226,7 @@ const TableRegEnter = () => {
                 columns={columns}
                 dataSource={data}
                 scroll={{
-                    x: 600,
+                    x: 350,
                 }}
             />
         </div>

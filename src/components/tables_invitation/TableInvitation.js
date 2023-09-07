@@ -179,6 +179,7 @@ const TableInvitation = () => {
     });
     const columns = [
         {
+            className: 'column-display',
             dataIndex: 'key',
             rowScope: 'row',
             width: '50px',
@@ -195,11 +196,13 @@ const TableInvitation = () => {
         },
         {
             title: 'Эл.почта',
+            className: 'column-display',
             dataIndex: 'email',
             key: 'email',
         },
         {
             title: 'Телефон',
+            className: 'column-display',
             dataIndex: 'phone',
             key: 'phone',
         },
@@ -229,7 +232,7 @@ const TableInvitation = () => {
                 columns={columns}
                 dataSource={data}
                 scroll={{
-                    x: 600,
+                    x: 400,
                 }}
             />
         </div>
