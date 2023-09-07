@@ -59,8 +59,8 @@ const RegForm = () => {
     );
 
     return (
-        <div className='container'>
-            <h3>Регистрация желающих в базу</h3>
+        <div>
+            <h3 className='regform-title'>Регистрация желающих в базу</h3>
             <Form
                 className='form'
                 {...formItemLayout}

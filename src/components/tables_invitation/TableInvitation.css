@@ -1,14 +1,9 @@
-.container {
-    padding: 10ch 20ch 0 20ch;
-    background: whitesmoke;
+.invitationtable-title {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    padding-top: 50px;
 }
 
-h3 {
-    margin-top: 0;
-}
-
-@media screen and (max-width: 1050px) {
-    .container {
-        padding: 0 20px;
-    }
+.table {
+    padding-bottom: 7ch;
 }

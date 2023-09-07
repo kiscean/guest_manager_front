@@ -1,24 +1,10 @@
-.container {
-    padding: 10ch 20ch 0 20ch;
-}
-
-.form {
-    padding-bottom: 1ch;
-}
-
-h3 {
-    margin-top: 50px;
+.regform-title {
+    margin-top: 10px;
     margin-bottom: 50px;
     padding-top: 50px;
 }
 
-@media screen and (max-width: 1050px) {
-    .container {
-        padding: 10ch 20px 0 20px;
-    }
-
-    h3 {
-        padding-top: 100px;
-    }
+.form {
+    padding-bottom: 1ch;
 }
 

@@ -39,8 +39,7 @@ const Scanner = () => {
         })
     }, [isEnabled])
     return (
-        <div className='container'>
-            <h3 className='scanner-title'>Сканер QR кодов</h3>
+        <div>
             <div className='scanner'>
                 <div id='qrCodeContainer'></div>
                 {qrMessage && <div className='qr-message'>{qrMessage}</div>}

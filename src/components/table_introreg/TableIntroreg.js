@@ -103,9 +103,10 @@ const TableIntroreg = () => {
     ];
 
     return (
-        <div className='container'>
-            <h3>Занесены в базу</h3>
+        <div>
+            <h3 className='introregtable-title'>Занесены в базу</h3>
             <Table
+                className='table'
                 columns={columns}
                 dataSource={data}
                 scroll={{

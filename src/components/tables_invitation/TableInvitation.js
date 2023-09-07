@@ -222,9 +222,10 @@ const TableInvitation = () => {
     ];
 
     return (
-        <div className='container'>
-            <h3>Отправка приглашений</h3>
+        <div>
+            <h3 className='invitationtable-title'>Отправка приглашений</h3>
             <Table
+                className='table'
                 columns={columns}
                 dataSource={data}
                 scroll={{

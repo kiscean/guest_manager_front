@@ -1,0 +1,14 @@
+.container {
+    padding: 10ch 20ch 0 20ch;
+    background: whitesmoke;
+}
+
+.homeblocks {
+    margin-top: 70px;
+}
+
+@media screen and (max-width: 1050px) {
+    .container {
+        padding: 50px 20px;
+    }
+}

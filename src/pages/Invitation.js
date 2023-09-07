@@ -2,11 +2,11 @@ import React from "react";
 
 import TableInvitation from "../components/tables_invitation/TableInvitation";
 
-import './style.css';
+import './Pages.css'
 
 const Invitation = () => {
     return (
-        <div>
+        <div className='container'>
             <TableInvitation />
         </div>
     );

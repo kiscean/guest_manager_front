@@ -217,9 +217,10 @@ const TableRegEnter = () => {
     ];
 
     return (
-        <div className='container'>
-            <h3>Прошедшие регистрацию</h3>
+        <div>
+            <h3 className='regentertable-title'>Прошедшие регистрацию</h3>
             <Table
+                className='table'
                 columns={columns}
                 dataSource={data}
                 scroll={{
