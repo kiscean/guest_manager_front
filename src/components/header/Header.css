@@ -7,10 +7,17 @@
     padding-inline: 2.5ch;
     left: 0;
     top: 0;
+    background-color: #a10309;
 }
 
 .header__logo-link {
     margin-top: 4px;
     height: 42px;
     width: 42px;
+}
+
+h2 {
+    color: white;
+    padding: 0;
+    margin: -18px 0 0 20px;
 }
