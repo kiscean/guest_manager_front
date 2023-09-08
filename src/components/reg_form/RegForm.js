@@ -153,8 +153,11 @@ const RegForm = () => {
                 >
                     <Select placeholder="выбрать статус">
                         <Option value="guest">Гость</Option>
-                        <Option value="speaker">Спикер</Option>
-                        <Option value="other">Другое</Option>
+                        <Option value="author">Писатель</Option>
+                        <Option value="speaker">Чтец</Option>
+                        <Option value="jury">Жюри</Option>
+                        <Option value="representative">Представитель ВУЗа</Option>
+                        <Option value="employee">Сотрудник АО "ЗАСЛОН и ГК</Option>
                     </Select>
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
