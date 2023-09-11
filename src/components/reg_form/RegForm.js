@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from "axios";
+
 import {
     Button,
     Form,
@@ -40,135 +42,123 @@ const tailFormItemLayout = {
     },
 };
 
-const RegForm = () => {
+class RegForm extends React.Component {
 
-    const [form] = Form.useForm();
-    const onFinish = (values) => {
-        console.log('Received values of form: ', values);
+    handleFormSubmit = (values) => {
+        const last_name = values.last_name;
+        const first_name = values.first_name;
+        const middle_name = values.middle_name;
+        const email_guest = values.email_guest;
+        const phone_guest = values.phone_guest;
+        const guest_status = values.guest_status;
+
+        console.log(values)
     };
-    const prefixSelector = (
-        <Form.Item name="prefix" noStyle>
-            <Select
-                style={{
-                    width: 60,
-                }}
-            >
-                <Option value="7">+7</Option>
-            </Select>
-        </Form.Item>
-    );
 
-    return (
-        <div>
-            <h3 className='regform-title'>Регистрация желающих в базу</h3>
-            <Form
-                className='form'
-                {...formItemLayout}
-                form={form}
-                name="register"
-                onFinish={onFinish}
-                initialValues={{
-                    prefix: '7',
-                }}
-                style={{
-                    maxWidth: 600,
-                }}
-                scrollToFirstError
-            >
-                <Form.Item
-                    name='lastname'
-                    label="Фамилия"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
+    render() {
+        return (
+            <div>
+                <h3 className='regform-title'>Регистрация желающих в базу</h3>
+                <Form
+                    className='form'
+                    {...formItemLayout}
+                    name="register"
+                    onFinish={(values) => this.handleFormSubmit(values)}
+                    style={{
+                        maxWidth: 600,
+                    }}
+                    scrollToFirstError
                 >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    name='firstname'
-                    label="Имя"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    name='middlename'
-                    label="Отчество"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    name="email"
-                    label="Эл.почта"
-                    rules={[
-                        {
-                            type: 'email',
-                            message: 'Введенные данные не соответствует формату эл.почты!',
-                        },
-                        {
-                            required: true,
-                            message: 'Введите электронную почту!',
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    name="phone"
-                    label="Телефон"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Необходимо ввести телефон!',
-                        },
-                    ]}
-                >
-                    <Input
-                        addonBefore={prefixSelector}
-                        style={{
-                            width: '100%',
-                        }}
-                    />
-                </Form.Item>
-                <Form.Item
-                    name="status"
-                    label="Статус"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Необходимо выбрать статус!',
-                        },
-                    ]}
-                >
-                    <Select placeholder="выбрать статус">
-                        <Option value="guest">Гость</Option>
-                        <Option value="author">Писатель</Option>
-                        <Option value="speaker">Чтец</Option>
-                        <Option value="jury">Жюри</Option>
-                        <Option value="representative">Представитель ВУЗа</Option>
-                        <Option value="employee">Сотрудник АО "ЗАСЛОН и ГК</Option>
-                    </Select>
-                </Form.Item>
-                <Form.Item {...tailFormItemLayout}>
-                    <Button type="primary" htmlType="submit">
-                        Занести в базу
-                    </Button>
-                </Form.Item>
-            </Form>
+                    <Form.Item
+                        name='last_name'
+                        label="Фамилия"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input/>
+                    </Form.Item>
+                    <Form.Item
+                        name='first_name'
+                        label="Имя"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input/>
+                    </Form.Item>
+                    <Form.Item
+                        name='middle_name'
+                        label="Отчество"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input/>
+                    </Form.Item>
+                    <Form.Item
+                        name="email_guest"
+                        label="Эл.почта"
+                        rules={[
+                            {
+                                type: 'email',
+                                message: 'Введенные данные не соответствует формату эл.почты!',
+                            },
+                            {
+                                required: true,
+                                message: 'Введите электронную почту!',
+                            },
+                        ]}
+                    >
+                        <Input/>
+                    </Form.Item>
+                    <Form.Item
+                        name='phone_guest'
+                        label="Телефон"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Необходимо ввести телефон!',
+                            },
+                        ]}
+                    >
+                        <Input/>
+                    </Form.Item>
+                    <Form.Item
+                        name="guest_status"
+                        label="Статус"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Необходимо выбрать статус!',
+                            },
+                        ]}
+                    >
+                        <Select placeholder="выбрать статус">
+                            <Option value="Гость">Гость</Option>
+                            <Option value="Писатель">Писатель</Option>
+                            <Option value="Чтец">Чтец</Option>
+                            <Option value="Жюри">Жюри</Option>
+                            <Option value="Представитель ВУЗа">Представитель ВУЗа</Option>
+                            <Option value="Сотрудник АО ЗАСЛОН и ГК">Сотрудник АО ЗАСЛОН и ГК</Option>
+                        </Select>
+                    </Form.Item>
+                    <Form.Item {...tailFormItemLayout}>
+                        <Button type="primary" htmlType="submit">
+                            Занести в базу
+                        </Button>
+                    </Form.Item>
+                </Form>
 
-        </div>
-    );
+            </div>
+        );
+    }
 }
 
 export default RegForm;
