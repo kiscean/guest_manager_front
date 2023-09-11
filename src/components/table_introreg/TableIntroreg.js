@@ -78,7 +78,8 @@ const TableIntroreg = () => {
                     x: 350,
                 }}
                 dataSource={data}>
-                <Column title="UUID" dataIndex="guest_uuid" key="guest_uuid" />
+                <Column dataIndex="id" key="id" />
+                <Column className='column-display' title="UUID" dataIndex="guest_uuid" key="guest_uuid" />
                 <Column title="Фамилия" dataIndex="last_name" key="last_name" />
                 <Column title="Имя" dataIndex="first_name" key="first_name" />
                 <Column className='column-display' title="Отчество" dataIndex="middle_name" key="middle_name" />

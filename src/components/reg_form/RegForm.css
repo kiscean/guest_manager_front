@@ -4,7 +4,25 @@
     padding-top: 50px;
 }
 
-.form {
-    padding-bottom: 1ch;
+.regform-form {
+    margin-right: 25px;
 }
 
+.regform__input {
+    max-width: 350px;
+    margin-bottom: 15px;
+}
+
+.regform__button {
+    margin: 25px 0px 50px 0;
+}
+
+@media screen and (max-width: 900px) {
+    .regform__input {
+        max-width: 280px;
+    }
+
+    .regform__button {
+        margin: 25px 0px 10px 0;
+    }
+}
