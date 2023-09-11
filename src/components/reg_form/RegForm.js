@@ -44,6 +44,15 @@ const tailFormItemLayout = {
 
 class RegForm extends React.Component {
 
+    state = {
+        last_name: '',
+        first_name: '',
+        middle_name: '',
+        email_guest: '',
+        phone_guest: '',
+        guest_status: '',
+    }
+
     handleFormSubmit = (values) => {
         const last_name = values.last_name;
         const first_name = values.first_name;
@@ -52,7 +61,11 @@ class RegForm extends React.Component {
         const phone_guest = values.phone_guest;
         const guest_status = values.guest_status;
 
-        console.log(values)
+        axios.post(`https://127.0.0.1:8000`, {last_name, first_name, middle_name, email_guest, phone_guest, guest_status} )
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
     };
 
     render() {
