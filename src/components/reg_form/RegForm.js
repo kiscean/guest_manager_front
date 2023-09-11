@@ -63,7 +63,7 @@ class RegForm extends React.Component {
 
         axios.post(`https://127.0.0.1:8000`, {last_name, first_name, middle_name, email_guest, phone_guest, guest_status} )
             .then(res => {
-                console.log(res);
+                console.log(values);
                 console.log(res.data);
             })
     };

@@ -1,122 +1,78 @@
 import React from 'react';
+import axios from 'axios';
 
 import {Space, Table} from "antd";
 
 import './TableIntroreg.css';
 
-const data = [
+const columns = [
     {
-        key: '1',
-        lastname: 'Петроф',
-        firstname: 'Иван',
-        middlename: 'Васильевич',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'guest',
-        regtime: '16:40',
+        dataIndex: 'guest_uuid',
+        rowScope: 'row',
+        width: '50px',
+    },
+
+    {
+        title: 'ФИО',
+        render: (_, record) => (
+            <Space size="middle">
+                <p>{record.last_name} {record.first_name} {record.middle_name}</p>
+            </Space>
+        ),
     },
     {
-        key: '2',
-        lastname: 'Федоров',
-        firstname: 'Юрий',
-        middlename: 'Геннадьевич',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '12:10',
+        title: 'Эл.почта',
+        className: 'column-display',
+        dataIndex: 'email_guest',
+        key: 'email_guest',
     },
     {
-        key: '3',
-        lastname: 'Маркин',
-        firstname: 'Сергей',
-        middlename: 'Владимирович',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'guest',
-        regtime: '13:20',
+        title: 'Телефон',
+        className: 'column-display',
+        dataIndex: 'phone_guest',
+        key: 'phone_guest',
     },
     {
-        key: '4',
-        lastname: 'Астафьева',
-        firstname: 'Нина',
-        middlename: 'Илларионовна',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '12:10',
-    },
-    {
-        key: '5',
-        lastname: 'Савина',
-        firstname: 'Юлианна',
-        middlename: 'Васильевна',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '11:10',
-    },
-    {
-        key: '6',
-        lastname: 'Сомов',
-        firstname: 'Федор',
-        middlename: 'Геннадьевич',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '12:19',
+        title: 'Статус',
+        dataIndex: 'guest_status',
+        key: 'sguest_status',
+        width: '15%',
     },
 ];
 
-const TableIntroreg = () => {
+class TableIntroreg extends React.Component {
 
-    const columns = [
-        {
-            dataIndex: 'key',
-            rowScope: 'row',
-            width: '50px',
-        },
+    state = { detail: [], }
 
-        {
-            title: 'ФИО',
-            render: (_, record) => (
-                <Space size="middle">
-                    <p>{record.lastname} {record.firstname} {record.middlename}</p>
-                </Space>
-            ),
-        },
-        {
-            title: 'Эл.почта',
-            className: 'column-display',
-            dataIndex: 'email',
-            key: 'email',
-        },
-        {
-            title: 'Телефон',
-            className: 'column-display',
-            dataIndex: 'phone',
-            key: 'phone',
-        },
-        {
-            title: 'Статус',
-            dataIndex: 'status',
-            key: 'status',
-            width: '15%',
-        },
-    ];
+    componentDidMount() {
+        let data;
+        axios.get('http://127.0.0.1:8000/')
+        .then(res => {
+            data = res.data;
+            this.setState({
+                details: data
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
 
-    return (
-        <div>
-            <h3 className='introregtable-title'>Занесены в базу</h3>
-            <Table
-                className='table'
-                columns={columns}
-                dataSource={data}
-                scroll={{
-                    x: 350,
-                }}
-            />
-        </div>
-    );
+    render() {
+        return (
+            <div>
+                <h3 className='introregtable-title'>Занесены в базу</h3>
+                <Table
+                    className='table'
+                    columns={columns}
+                    dataSource={this.data}
+                    scroll={{
+                        x: 350,
+                    }}
+                />
+            </div>
+        );
+    }
 }
 
 export default TableIntroreg;
