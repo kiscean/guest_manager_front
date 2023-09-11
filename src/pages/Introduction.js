@@ -11,10 +11,10 @@ const Introduction = () => {
     return (
         <div className='container'>
             <Row>
-                <Col xl={12} sm={24}>
+                <Col xl={8} sm={24}>
                     <RegForm />
                 </Col>
-                <Col xl={12} sm={24}>
+                <Col xl={16} sm={24}>
                     <TableIntroreg />
                 </Col>
             </Row>

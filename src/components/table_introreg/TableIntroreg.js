@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Space, Table} from "antd";
+import { Table } from "antd";
+import Column from "antd/es/table/Column";
 
 import './TableIntroreg.css';
 
@@ -69,52 +70,22 @@ const data = [
 
 const TableIntroreg = () => {
 
-    const columns = [
-        {
-            dataIndex: 'key',
-            rowScope: 'row',
-            width: '50px',
-        },
-
-        {
-            title: 'ФИО',
-            render: (_, record) => (
-                <Space size="middle">
-                    <p>{record.lastname} {record.firstname} {record.middlename}</p>
-                </Space>
-            ),
-        },
-        {
-            title: 'Эл.почта',
-            className: 'column-display',
-            dataIndex: 'email',
-            key: 'email',
-        },
-        {
-            title: 'Телефон',
-            className: 'column-display',
-            dataIndex: 'phone',
-            key: 'phone',
-        },
-        {
-            title: 'Статус',
-            dataIndex: 'status',
-            key: 'status',
-            width: '15%',
-        },
-    ];
-
     return (
         <div>
             <h3 className='introregtable-title'>Занесены в базу</h3>
             <Table
-                className='table'
-                columns={columns}
-                dataSource={data}
                 scroll={{
                     x: 350,
                 }}
-            />
+                dataSource={data}>
+                <Column title="UUID" dataIndex="guest_uuid" key="guest_uuid" />
+                <Column title="Фамилия" dataIndex="last_name" key="last_name" />
+                <Column title="Имя" dataIndex="first_name" key="first_name" />
+                <Column className='column-display' title="Отчество" dataIndex="middle_name" key="middle_name" />
+                <Column className='column-display' title="Эл.почта" dataIndex="email_guest" key="email_guest" />
+                <Column className='column-display' title="Телефон" dataIndex="phone_guest" key="phone_guest" />
+                <Column title="Статус" dataIndex="guest_status" key="guest_status" />
+            </Table>
         </div>
     );
 }
