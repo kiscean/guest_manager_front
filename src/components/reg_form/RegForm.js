@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
-import {Button, Col, Form, Input, Radio, Row, Space} from 'antd';
+import {Button, Col, Input, Radio, Row, Space} from 'antd';
 
 import './RegForm.css';
+
 
 const RegForm = () => {
 
@@ -13,6 +15,28 @@ const RegForm = () => {
     const [email_guest, setEmailGuest] = useState('')
     const [phone_guest, setPhoneGuest] = useState('')
     const [guest_status, setStatusGuest] = useState('')
+
+    const navigate = useNavigate();
+
+    const AddGuestInfo = async () => {
+        let formField = new FormData()
+
+        formField.append('last_name', last_name)
+        formField.append('first_name', first_name)
+        formField.append('middle_name', middle_name)
+        formField.append('email_guest', email_guest)
+        formField.append('phone_guest', phone_guest)
+        formField.append('guest_status', guest_status)
+
+        await axios.post({
+            method: 'post',
+            url: 'http://127.0.0.1:8000/api/guests',
+            data: formField
+        }).then((response) => {
+           console.log(response.data);
+           navigate('/introduction');
+        })
+    }
 
     return (
             <div>
@@ -82,7 +106,7 @@ const RegForm = () => {
                         </Radio.Group>
                     </Col>
                     <Col span={24}>
-                        <Button className='regform__button' type="primary">Записать в базу</Button>
+                        <Button className='regform__button' type="primary" onClick={AddGuestInfo}>Записать в базу</Button>
                     </Col>
                 </Row>
             </div>
