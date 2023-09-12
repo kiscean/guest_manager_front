@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import { Table } from "antd";
 import Column from "antd/es/table/Column";
 
 import './TableIntroreg.css';
+import axios from "axios";
 
 const data = [
     {
@@ -70,6 +71,17 @@ const data = [
 
 const TableIntroreg = () => {
 
+    const [guests, setGuests] = useState([])
+
+    const getGuests = async () => {
+        const response = await axios.get('http://127.0.0.1:8000/api/guests')
+        setGuests(response.data)
+    }
+
+    useEffect(() => {
+        getGuests();
+    }, [])
+
     return (
         <div>
             <h3 className='introregtable-title'>Занесены в базу</h3>
@@ -77,9 +89,8 @@ const TableIntroreg = () => {
                 scroll={{
                     x: 350,
                 }}
-                dataSource={data}>
+                dataSource={guests}>
                 <Column dataIndex="id" key="id" />
-                <Column className='column-display' title="UUID" dataIndex="guest_uuid" key="guest_uuid" />
                 <Column title="Фамилия" dataIndex="last_name" key="last_name" />
                 <Column title="Имя" dataIndex="first_name" key="first_name" />
                 <Column className='column-display' title="Отчество" dataIndex="middle_name" key="middle_name" />
