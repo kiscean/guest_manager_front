@@ -1,81 +1,92 @@
-import React from 'react';
+import React, {useState} from 'react';
 import axios from "axios";
 
 import {Button, Col, Form, Input, Radio, Row, Space} from 'antd';
 
 import './RegForm.css';
 
-class RegForm extends React.Component {
+const RegForm = () => {
 
-    state = {
-        last_name: '',
-        first_name: '',
-        middle_name: '',
-        email_guest: '',
-        phone_guest: '',
-        guest_status: '',
-    }
+    const [last_name, setLastName] = useState('')
+    const [first_name, setFirstName] = useState('')
+    const [middle_name, setMiddleName] = useState('')
+    const [email_guest, setEmailGuest] = useState('')
+    const [phone_guest, setPhoneGuest] = useState('')
+    const [guest_status, setStatusGuest] = useState('')
 
-    handleFormSubmit = (values) => {
-        const last_name = values.last_name;
-        const first_name = values.first_name;
-        const middle_name = values.middle_name;
-        const email_guest = values.email_guest;
-        const phone_guest = values.phone_guest;
-        const guest_status = values.guest_status;
-
-        axios.post(`https://127.0.0.1:8000`, {last_name, first_name, middle_name, email_guest, phone_guest, guest_status} )
-            .then(res => {
-                console.log(values);
-                console.log(res.data);
-            })
-    };
-
-    render() {
-
-        return (
+    return (
             <div>
                 <h3 className='regform-title'>Регистрация желающих в базу</h3>
-                    <Form className='regform-form'>
-                        <Row>
-                            <Col span={24}>
-                                <Input rootClassName='regform__input' placeholder="Фамилия" />
-                            </Col>
-                            <Col span={24}>
-                                <Input rootClassName='regform__input' placeholder="Фамилия" />
-                            </Col>
-                            <Col span={24}>
-                                <Input rootClassName='regform__input' placeholder="Имя" />
-                            </Col>
-                            <Col span={24}>
-                                <Input rootClassName='regform__input' placeholder="Отчество" />
-                            </Col>
-                            <Col span={24}>
-                                <Input rootClassName='regform__input' placeholder="Эл.адрес" rules={[{type: 'email', message: 'Введенные данные не соответствует формату эл.почты!'}]}/>
-                            </Col>
-                            <Col span={24}>
-                                <Input rootClassName='regform__input' placeholder="Номер телефона" />
-                            </Col>
-                            <Col span={24}>
-                                <Radio.Group>
-                                    <Space direction="vertical">
-                                        <Radio value="Гость">Гость</Radio>
-                                        <Radio value="Писатель">Писатель</Radio>
-                                        <Radio value="Чтец">Чтец</Radio>
-                                        <Radio value="Жюри">Жюри</Radio>
-                                        <Radio value="Представитель ВУЗа">Представитель ВУЗа</Radio>
-                                        <Radio value="Сотрудник АО ЗАСЛОН и ГК">Сотрудник АО ЗАСЛОН и ГК</Radio>
-                                    </Space>
-                                </Radio.Group>
-                            </Col>
-                            <Col span={24}>
-                                <Button className='regform__button' type="primary">Записать в базу</Button>
-                            </Col>
-                        </Row>
-                    </Form>
+                <Row className='regform-form'>
+                    <Col span={24}>
+                        <Input
+                            name='last_name'
+                            rootClassName='regform__input'
+                            placeholder="Фамилия"
+                            value={last_name}
+                            onChange={(e) => setLastName(e.target.value)}
+                        />
+                    </Col>
+                    <Col span={24}>
+                        <Input
+                            name='first_name'
+                            rootClassName='regform__input'
+                            placeholder="Имя"
+                            value={first_name}
+                            onChange={(e) => setFirstName(e.target.value)}
+                        />
+                    </Col>
+                    <Col span={24}>
+                        <Input
+                            name='middle_name'
+                            rootClassName='regform__input'
+                            placeholder="Отчество"
+                            value={middle_name}
+                            onChange={(e) => setMiddleName(e.target.value)}
+                        />
+                    </Col>
+                    <Col span={24}>
+                        <Input
+                            name='email_guest'
+                            rootClassName='regform__input'
+                            placeholder="Эл.адрес"
+                            type='email'
+                            message='Введенные данные не соответствует формату эл.почты!'
+                            value={email_guest}
+                            onChange={(e) => setEmailGuest(e.target.value)}
+                        />
+                    </Col>
+                    <Col span={24}>
+                        <Input
+                            name='phone_guest'
+                            rootClassName='regform__input'
+                            placeholder="Номер телефона"
+                            value={phone_guest}
+                            onChange={(e) => setPhoneGuest(e.target.value)}
+                        />
+                    </Col>
+                    <Col span={24}>
+                        <Radio.Group
+                            name='guest_status'
+                            value={guest_status}
+                            onChange={(e) => setStatusGuest(e.target.value)}
+                        >
+                            <Space direction="vertical">
+                                <Radio value="Гость">Гость</Radio>
+                                <Radio value="Писатель">Писатель</Radio>
+                                <Radio value="Чтец">Чтец</Radio>
+                                <Radio value="Жюри">Жюри</Radio>
+                                <Radio value="Представитель ВУЗа">Представитель ВУЗа</Radio>
+                                <Radio value="Сотрудник АО ЗАСЛОН и ГК">Сотрудник АО ЗАСЛОН и ГК</Radio>
+                            </Space>
+                        </Radio.Group>
+                    </Col>
+                    <Col span={24}>
+                        <Button className='regform__button' type="primary">Записать в базу</Button>
+                    </Col>
+                </Row>
             </div>
         );
     }
-}
 
 export default RegForm;
