@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 
-import {DeleteOutlined, SearchOutlined} from '@ant-design/icons';
+import {CheckCircleOutlined, DeleteOutlined, SearchOutlined, StopOutlined} from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 
 import './TableInvitation.css';
@@ -217,7 +217,7 @@ const TableInvitation = () => {
             title: 'Действие',
             render: () => (
                 <Space>
-                    <Button type='primary'>Пригласить</Button> <Button type="primary" danger ghost><DeleteOutlined /></Button>
+                    <Button type='default'><CheckCircleOutlined /></Button> <Button type="primary" danger ghost><StopOutlined /></Button> <Button type='primary'>Отправить письмо</Button>
                 </Space>
             ),
             align: 'center',
