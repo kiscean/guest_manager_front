@@ -1,6 +1,5 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import axios from "axios";
 
 import Header from "../header/Header";
 import Home from "../../pages/Home";

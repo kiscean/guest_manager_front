@@ -9,16 +9,16 @@ import './RegForm.css';
 
 const RegForm = () => {
 
-    const [last_name, setLastName] = useState('')
-    const [first_name, setFirstName] = useState('')
-    const [middle_name, setMiddleName] = useState('')
-    const [email_guest, setEmailGuest] = useState('')
-    const [phone_guest, setPhoneGuest] = useState('')
-    const [guest_status, setStatusGuest] = useState('')
+    const [last_name, setLastName] = useState("")
+    const [first_name, setFirstName] = useState("")
+    const [middle_name, setMiddleName] = useState("")
+    const [email_guest, setEmailGuest] = useState("")
+    const [phone_guest, setPhoneGuest] = useState("")
+    const [guest_status, setStatusGuest] = useState("")
 
     const navigate = useNavigate();
 
-    const AddGuestInfo = async () => {
+    const addGuestInfo = async () => {
         let formField = new FormData()
 
         formField.append('last_name', last_name)
@@ -28,14 +28,15 @@ const RegForm = () => {
         formField.append('phone_guest', phone_guest)
         formField.append('guest_status', guest_status)
 
-        await axios.post({
+        await axios({
             method: 'post',
             url: 'http://127.0.0.1:8000/api/guests',
             data: formField
         }).then((response) => {
            console.log(response.data);
-           navigate('/introduction');
+           navigate('/');
         })
+        console.log(FormData)
     }
 
     return (
@@ -106,7 +107,7 @@ const RegForm = () => {
                         </Radio.Group>
                     </Col>
                     <Col span={24}>
-                        <Button className='regform__button' type="primary" onClick={AddGuestInfo}>Записать в базу</Button>
+                        <Button className='regform__button' type="primary" onClick={addGuestInfo}>Записать в базу</Button>
                     </Col>
                 </Row>
             </div>
