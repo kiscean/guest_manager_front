@@ -127,52 +127,6 @@ const TableInvitation = () => {
                 text
             ),
     });
-    const columns = [
-        {
-            className: 'column-display',
-            dataIndex: 'key',
-            rowScope: 'row',
-            width: '50px',
-        },
-
-        {
-            title: 'ФИО',
-            ...getColumnSearchProps('last_name'),
-            render: (_, record) => (
-                <Space size="middle">
-                    <p>{record.lastname} {record.firstname} {record.middlename}</p>
-                </Space>
-            ),
-        },
-        {
-            title: 'Эл.почта',
-            className: 'column-display',
-            dataIndex: 'email',
-            key: 'email',
-        },
-        {
-            title: 'Телефон',
-            className: 'column-display',
-            dataIndex: 'phone',
-            key: 'phone',
-        },
-        {
-            title: 'Статус',
-            dataIndex: 'status',
-            key: 'status',
-            sorter: true,
-            width: '15%',
-        },
-        {
-            title: 'Действие',
-            render: () => (
-                <Space>
-                    <Button type='default'><CheckCircleOutlined /></Button> <Button type="primary" danger ghost><StopOutlined /></Button> <Button type='primary'>Отправить письмо</Button>
-                </Space>
-            ),
-            align: 'center',
-        },
-    ];
 
     return (
         <div>
@@ -188,12 +142,18 @@ const TableInvitation = () => {
                 dataSource={guests}>
                 <Column dataIndex="id" key="id" />
                 <Column
-                    title="ФИО"
+                    title="Фамилия"
+                    dataIndex="last_name"
+                    key="last_name"
+                    {...getColumnSearchProps('last_name')}
+                />
+                <Column
+                    title="Имя Отчество"
                     render={(_, record) => (
                         <Space size="middle">
-                            <p>{record.last_name} {record.first_name} {record.middle_name}</p>
+                            <p>{record.first_name} {record.middle_name}</p>
                         </Space>
-                        )}
+                    )}
                 />
                 <Column className='column-display' title="Эл.почта" dataIndex="email_guest" key="email_guest" />
                 <Column className='column-display' title="Телефон" dataIndex="phone_guest" key="phone_guest" />
@@ -202,6 +162,7 @@ const TableInvitation = () => {
                     dataIndex="guest_status"
                     key="guest_status"
                     sorter={(a, b) => a.guest_status.length - b.guest_status.length }
+                    {...getColumnSearchProps('guest_status')}
                     sortDirections = {['descend', 'ascend']}
                 />
                 <Column
