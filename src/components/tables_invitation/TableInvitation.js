@@ -1,75 +1,25 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import axios from "axios";
 import Highlighter from 'react-highlight-words';
 
+import Column from "antd/es/table/Column";
 import {CheckCircleOutlined, SearchOutlined, StopOutlined} from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 
 import './TableInvitation.css';
 
-const data = [
-    {
-        key: '1',
-        lastname: 'Петроф',
-        firstname: 'Иван',
-        middlename: 'Васильевич',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'guest',
-        regtime: '16:40',
-    },
-    {
-        key: '2',
-        lastname: 'Федоров',
-        firstname: 'Юрий',
-        middlename: 'Геннадьевич',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '12:10',
-    },
-    {
-        key: '3',
-        lastname: 'Маркин',
-        firstname: 'Сергей',
-        middlename: 'Владимирович',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'guest',
-        regtime: '13:20',
-    },
-    {
-        key: '4',
-        lastname: 'Астафьева',
-        firstname: 'Нина',
-        middlename: 'Илларионовна',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '12:10',
-    },
-    {
-        key: '5',
-        lastname: 'Савина',
-        firstname: 'Юлианна',
-        middlename: 'Васильевна',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '11:10',
-    },
-    {
-        key: '6',
-        lastname: 'Сомов',
-        firstname: 'Федор',
-        middlename: 'Геннадьевич',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '12:19',
-    },
-];
-
 const TableInvitation = () => {
+
+    const [guests, setGuests] = useState([])
+
+    const getGuests = async () => {
+        const response = await axios.get('http://127.0.0.1:8000/api/guests')
+        setGuests(response.data)
+    }
+
+    useEffect(() => {
+        getGuests();
+    }, [])
 
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
@@ -187,7 +137,7 @@ const TableInvitation = () => {
 
         {
             title: 'ФИО',
-            ...getColumnSearchProps('lastname'),
+            ...getColumnSearchProps('last_name'),
             render: (_, record) => (
                 <Space size="middle">
                     <p>{record.lastname} {record.firstname} {record.middlename}</p>
@@ -226,15 +176,46 @@ const TableInvitation = () => {
 
     return (
         <div>
-            <h3 className='invitationtable-title'>Отправка приглашений</h3>
+            <h3 className='invitationtable-title'>Заявки</h3>
             <Table
                 className='table'
-                columns={columns}
-                dataSource={data}
                 scroll={{
-                    x: 400,
+                    x: 350,
                 }}
-            />
+                pagination={{
+                    pageSize: 25,
+                }}
+                dataSource={guests}>
+                <Column dataIndex="id" key="id" />
+                <Column
+                    title="ФИО"
+                    render={(_, record) => (
+                        <Space size="middle">
+                            <p>{record.last_name} {record.first_name} {record.middle_name}</p>
+                        </Space>
+                        )}
+                />
+                <Column className='column-display' title="Эл.почта" dataIndex="email_guest" key="email_guest" />
+                <Column className='column-display' title="Телефон" dataIndex="phone_guest" key="phone_guest" />
+                <Column
+                    title="Статус"
+                    dataIndex="guest_status"
+                    key="guest_status"
+                    sorter={(a, b) => a.guest_status.length - b.guest_status.length }
+                    sortDirections = {['descend', 'ascend']}
+                />
+                <Column
+                    title="Действие"
+                    key="action"
+                    render={(_, record) => (
+                        <Space direction={"horizontal"}>
+                            <Button type='default'><CheckCircleOutlined /></Button>
+                            <Button type="primary" danger ghost><StopOutlined />
+                            </Button> <Button type='primary'>Отправить письмо</Button>
+                        </Space>
+                    )}
+                />
+            </Table>
         </div>
     );
 }

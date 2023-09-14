@@ -6,69 +6,6 @@ import Column from "antd/es/table/Column";
 import './TableIntroreg.css';
 import axios from "axios";
 
-const data = [
-    {
-        key: '1',
-        lastname: 'Петроф',
-        firstname: 'Иван',
-        middlename: 'Васильевич',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'guest',
-        regtime: '16:40',
-    },
-    {
-        key: '2',
-        lastname: 'Федоров',
-        firstname: 'Юрий',
-        middlename: 'Геннадьевич',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '12:10',
-    },
-    {
-        key: '3',
-        lastname: 'Маркин',
-        firstname: 'Сергей',
-        middlename: 'Владимирович',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'guest',
-        regtime: '13:20',
-    },
-    {
-        key: '4',
-        lastname: 'Астафьева',
-        firstname: 'Нина',
-        middlename: 'Илларионовна',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '12:10',
-    },
-    {
-        key: '5',
-        lastname: 'Савина',
-        firstname: 'Юлианна',
-        middlename: 'Васильевна',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '11:10',
-    },
-    {
-        key: '6',
-        lastname: 'Сомов',
-        firstname: 'Федор',
-        middlename: 'Геннадьевич',
-        email: 'company@company.com',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '12:19',
-    },
-];
-
 const TableIntroreg = () => {
 
     const [guests, setGuests] = useState([])
