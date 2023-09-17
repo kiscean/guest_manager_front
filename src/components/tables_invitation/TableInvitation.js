@@ -207,9 +207,10 @@ const TableInvitation = () => {
                             <Button
                                 disabled={record.invitation == 0 ? false : true}
                                 type='default'
+                                style={{borderColor: 'green'}}
                                 onClick={() => { handleUpdateInvitation(record.id, {invitation: '1'}) }}
                             >
-                                <CheckCircleOutlined />
+                                <CheckCircleOutlined style={{color: 'green'}}/>
                             </Button>
                             <Button
                                 disabled={record.invitation == 0 ? false : true}
