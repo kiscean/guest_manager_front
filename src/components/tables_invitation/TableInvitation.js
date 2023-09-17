@@ -205,19 +205,23 @@ const TableInvitation = () => {
                     render={(_, record) => (
                         <Space direction={"horizontal"}>
                             <Button
+                                disabled={record.invitation == 0 ? false : true}
                                 type='default'
-                                onClick={() => { handleUpdateInvitation(record.id, {invitation: '1'})}}>
+                                onClick={() => { handleUpdateInvitation(record.id, {invitation: '1'}) }}
+                            >
                                 <CheckCircleOutlined />
                             </Button>
                             <Button
+                                disabled={record.invitation == 0 ? false : true}
                                 type="primary" danger ghost
-                                onClick={() => { handleUpdateInvitation(record.id, {invitation: '2'})}}
+                                onClick={() => { handleUpdateInvitation(record.id, {invitation: '2'}) }}
                             >
                                 <StopOutlined />
                             </Button>
                             <Button
+                                disabled={record.send_message == true ? true : false}
                                 type='primary'
-                                onClick={() => { handleUpdateInvitation(record.id, {send_message: 'True'})}}
+                                onClick={() => { handleUpdateInvitation(record.id, {send_message: 'True'}) }}
                             >
                                 Отправить письмо
                             </Button>
