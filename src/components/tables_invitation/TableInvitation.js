@@ -13,7 +13,7 @@ const TableInvitation = () => {
     const [guests, setGuests] = useState([])
 
     const getGuests = async () => {
-        const response = await axios.get('http://127.0.0.1:8000/api/guests')
+        const response = await axios.get('http://127.0.0.1:8000/api/guests/')
         setGuests(response.data)
     }
 
@@ -128,6 +128,22 @@ const TableInvitation = () => {
             ),
     });
 
+    const handleUpdateInvitation = async (id, value) => {
+        return axios.patch(`http://127.0.0.1:8000/api/guests/${id}/`, value)
+            .then((res) => {
+                const { data } = res;
+                const newGuests = guests.map(t => {
+                    if (t.id === id) {
+                        return data;
+                    }
+                    return t;
+                })
+                setGuests(newGuests);
+            }).catch(() => {
+                alert("Something went wrong")
+            })
+    }
+
     return (
         <div>
             <h3 className='invitationtable-title'>Заявки</h3>
@@ -138,41 +154,70 @@ const TableInvitation = () => {
                 }}
                 pagination={{
                     pageSize: 25,
+                    pageSizeOptions: ['25', '50', '100'],
                 }}
                 dataSource={guests}>
-                <Column dataIndex="id" key="id" />
+                <Column
+                    key="id"
+                    render={() => (
+                        <Space size="middle">
+                            <p>{guests.id}</p>
+                        </Space>
+                    )}
+                />
                 <Column
                     title="Фамилия"
                     dataIndex="last_name"
-                    key="last_name"
+                    key="id"
                     {...getColumnSearchProps('last_name')}
                 />
                 <Column
                     title="Имя Отчество"
+                    key="id"
                     render={(_, record) => (
                         <Space size="middle">
                             <p>{record.first_name} {record.middle_name}</p>
                         </Space>
                     )}
                 />
-                <Column className='column-display' title="Эл.почта" dataIndex="email_guest" key="email_guest" />
-                <Column className='column-display' title="Телефон" dataIndex="phone_guest" key="phone_guest" />
+                <Column
+                    className='column-display'
+                    title="Эл.почта"
+                    dataIndex="email_guest"
+                    key="id" />
+                <Column
+                    className='column-display'
+                    title="Телефон"
+                    dataIndex="phone_guest"
+                    key="id" />
                 <Column
                     title="Статус"
                     dataIndex="guest_status"
-                    key="guest_status"
+                    key="id"
                     sorter={(a, b) => a.guest_status.length - b.guest_status.length }
                     {...getColumnSearchProps('guest_status')}
                     sortDirections = {['descend', 'ascend']}
                 />
                 <Column
                     title="Действие"
-                    key="action"
+                    dataIndex="invitation"
+                    key="id"
                     render={(_, record) => (
                         <Space direction={"horizontal"}>
-                            <Button type='default'><CheckCircleOutlined /></Button>
-                            <Button type="primary" danger ghost><StopOutlined />
-                            </Button> <Button type='primary'>Отправить письмо</Button>
+                            <Button
+                                type='default'
+                                onClick={() => { handleUpdateInvitation(record.id, {invitation: '1'})}}>
+                                <CheckCircleOutlined />
+                            </Button>
+                            <Button
+                                type="primary" danger ghost
+                                onClick={() => { handleUpdateInvitation(record.id, {invitation: '2'})}}
+                            >
+                                <StopOutlined />
+                            </Button>
+                            <Button type='primary'>
+                                Отправить письмо
+                            </Button>
                         </Space>
                     )}
                 />

@@ -30,7 +30,7 @@ const RegForm = () => {
 
         await axios({
             method: 'post',
-            url: 'http://127.0.0.1:8000/api/guests',
+            url: 'http://127.0.0.1:8000/api/guests/',
             data: formField
         }).then((response) => {
            console.log(response.data);
