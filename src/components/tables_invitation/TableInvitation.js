@@ -215,7 +215,10 @@ const TableInvitation = () => {
                             >
                                 <StopOutlined />
                             </Button>
-                            <Button type='primary'>
+                            <Button
+                                type='primary'
+                                onClick={() => { handleUpdateInvitation(record.id, {send_message: 'True'})}}
+                            >
                                 Отправить письмо
                             </Button>
                         </Space>
