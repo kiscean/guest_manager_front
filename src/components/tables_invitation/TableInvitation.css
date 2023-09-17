@@ -8,6 +8,14 @@
     padding-bottom: 7ch;
 }
 
+.invitationtable-button__icon-green {
+    color: green;
+}
+
+.invitationtable-button__icon-red {
+    color: red;
+}
+
 @media screen and (max-width: 900px) {
     .column-display {
         display: none;

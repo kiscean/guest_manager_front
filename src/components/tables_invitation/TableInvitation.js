@@ -207,17 +207,16 @@ const TableInvitation = () => {
                             <Button
                                 disabled={record.invitation == 0 ? false : true}
                                 type='default'
-                                style={{borderColor: 'green'}}
                                 onClick={() => { handleUpdateInvitation(record.id, {invitation: '1'}) }}
                             >
-                                <CheckCircleOutlined style={{color: 'green'}}/>
+                                <CheckCircleOutlined className={record.invitation == 1 ? 'invitationtable-button__icon-green' : ''}/>
                             </Button>
                             <Button
                                 disabled={record.invitation == 0 ? false : true}
                                 type="primary" danger ghost
                                 onClick={() => { handleUpdateInvitation(record.id, {invitation: '2'}) }}
                             >
-                                <StopOutlined />
+                                <StopOutlined className={record.invitation == 2 ? 'invitationtable-button__icon-red' : ''}/>
                             </Button>
                             <Button
                                 disabled={record.send_message == true ? true : false}
