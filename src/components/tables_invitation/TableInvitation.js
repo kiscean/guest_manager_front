@@ -142,6 +142,26 @@ const TableInvitation = () => {
             }).catch(() => {
                 alert("Something went wrong")
             })
+
+        const sendEmailGuest = async (id, first_name, middle_name, email_guest, invitation) => {
+            let dataForEmail = new FormData()
+
+            dataForEmail.append('first_name', first_name)
+            dataForEmail.append('middle_name', middle_name)
+            dataForEmail.append('email_guest', email_guest)
+            dataForEmail.append('invitation', invitation)
+
+            await axios({
+                method: 'post',
+                url: 'http://127.0.0.1:8000/api/guests/',
+                data: dataForEmail
+            }).then((response) => {
+                console.log(response.data);
+                window.location.reload();
+            })
+            console.log(FormData)
+        }
+
     }
 
     return (
