@@ -13,6 +13,7 @@ const TableInvitation = () => {
     const [guests, setGuests] = useState([])
 
     const getGuests = async () => {
+
         const response = await axios.get('http://127.0.0.1:8000/api/guests/')
         setGuests(response.data)
     }
@@ -20,6 +21,7 @@ const TableInvitation = () => {
     useEffect(() => {
         getGuests();
     }, [])
+
 
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
@@ -142,26 +144,6 @@ const TableInvitation = () => {
             }).catch(() => {
                 alert("Something went wrong")
             })
-
-        const sendEmailGuest = async (id, first_name, middle_name, email_guest, invitation) => {
-            let dataForEmail = new FormData()
-
-            dataForEmail.append('first_name', first_name)
-            dataForEmail.append('middle_name', middle_name)
-            dataForEmail.append('email_guest', email_guest)
-            dataForEmail.append('invitation', invitation)
-
-            await axios({
-                method: 'post',
-                url: 'http://127.0.0.1:8000/api/guests/',
-                data: dataForEmail
-            }).then((response) => {
-                console.log(response.data);
-                window.location.reload();
-            })
-            console.log(FormData)
-        }
-
     }
 
     return (
@@ -220,28 +202,28 @@ const TableInvitation = () => {
                 />
                 <Column
                     title="Действие"
-                    dataIndex="invitation"
+                    dataIndex="invit_status"
                     key="id"
                     render={(_, record) => (
                         <Space direction={"horizontal"}>
                             <Button
-                                disabled={record.invitation == 0 ? false : true}
+                                disabled={record.invit_status == 0 ? false : true}
                                 type='default'
-                                onClick={() => { handleUpdateInvitation(record.id, {invitation: '1'}) }}
+                                onClick={() => { handleUpdateInvitation(record.id, {invit_status: '1'}) }}
                             >
-                                <CheckCircleOutlined className={record.invitation == 1 ? 'invitationtable-button__icon-green' : ''}/>
+                                <CheckCircleOutlined className={record.invit_status == 1 ? 'invitationtable-button__icon-green' : ''}/>
                             </Button>
                             <Button
-                                disabled={record.invitation == 0 ? false : true}
+                                disabled={record.invit_status == 0 ? false : true}
                                 type="primary" danger ghost
-                                onClick={() => { handleUpdateInvitation(record.id, {invitation: '2'}) }}
+                                onClick={() => { handleUpdateInvitation(record.id, {invit_status: '2'}) }}
                             >
-                                <StopOutlined className={record.invitation == 2 ? 'invitationtable-button__icon-red' : ''}/>
+                                <StopOutlined className={record.invit_status == 2 ? 'invitationtable-button__icon-red' : ''}/>
                             </Button>
                             <Button
                                 disabled={record.send_message == true ? true : false}
                                 type='primary'
-                                onClick={() => { handleUpdateInvitation(record.id, {send_message: 'True'}) }}
+                                onClick={() => { handleUpdateInvitation(record.id, {send_message: 'True'}); handleUpdateInvitation(record.id, {send_message: 'True'})} }
                             >
                                 Отправить письмо
                             </Button>

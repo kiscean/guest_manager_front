@@ -16,8 +16,6 @@ const RegForm = () => {
     const [phone_guest, setPhoneGuest] = useState("")
     const [guest_status, setStatusGuest] = useState("")
 
-    const navigate = useNavigate();
-
     const addGuestInfo = async () => {
         let formField = new FormData()
 
@@ -34,7 +32,7 @@ const RegForm = () => {
             data: formField
         }).then((response) => {
            console.log(response.data);
-           navigate('/');
+           window.location.reload();
         })
         console.log(FormData)
     }
