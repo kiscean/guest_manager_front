@@ -10,19 +10,6 @@ import './TableInvitation.css';
 
 const TableInvitation = () => {
 
-    const [guests, setGuests] = useState([])
-
-    const getGuests = async () => {
-
-        const response = await axios.get('http://127.0.0.1:8000/api/guests/')
-        setGuests(response.data)
-    }
-
-    useEffect(() => {
-        getGuests();
-    }, [])
-
-
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
@@ -130,6 +117,18 @@ const TableInvitation = () => {
             ),
     });
 
+    const [guests, setGuests] = useState([])
+
+    const getGuests = async () => {
+
+        const response = await axios.get('http://127.0.0.1:8000/api/guests/')
+        setGuests(response.data)
+    }
+
+    useEffect(() => {
+        getGuests();
+    }, [])
+
     const handleUpdateInvitation = async (id, value) => {
         return axios.patch(`http://127.0.0.1:8000/api/guests/${id}/`, value)
             .then((res) => {
@@ -145,6 +144,34 @@ const TableInvitation = () => {
                 alert("Something went wrong")
             })
     }
+
+    const addInvitationInfo = async (id) => {
+        await axios.get(`http://127.0.0.1:8000/api/guests/${id}/`)
+            .then(response => {
+                const firstName = response.data.first_name
+                const middleName = response.data.middle_name
+                const emailGuest = response.data.email_guest
+                const invitStatus = response.data.invit_status
+
+                let dataField = new FormData()
+
+                dataField.append('first_name', firstName)
+                dataField.append('middle_name', middleName)
+                dataField.append('email_guest', emailGuest)
+                dataField.append('invit_status', invitStatus)
+
+                axios({
+                    method: 'post',
+                    url: 'http://127.0.0.1:8000/api/invitation/',
+                    data: dataField
+                }).then((response) => {
+                    console.log(response.data);
+                    window.location.reload();
+                })
+                console.log(FormData)
+            })
+    }
+
 
     return (
         <div>
@@ -223,7 +250,7 @@ const TableInvitation = () => {
                             <Button
                                 disabled={record.send_message == true ? true : false}
                                 type='primary'
-                                onClick={() => { handleUpdateInvitation(record.id, {send_message: 'True'}); handleUpdateInvitation(record.id, {send_message: 'True'})} }
+                                onClick={() => { handleUpdateInvitation(record.id, {send_message: 'True'}); addInvitationInfo(record.id)} }
                             >
                                 Отправить письмо
                             </Button>
