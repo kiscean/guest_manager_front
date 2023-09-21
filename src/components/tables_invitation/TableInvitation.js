@@ -172,7 +172,6 @@ const TableInvitation = () => {
             })
     }
 
-
     return (
         <div>
             <h3 className='invitationtable-title'>Заявки</h3>
