@@ -185,14 +185,7 @@ const TableInvitation = () => {
                     pageSizeOptions: ['25', '50', '100'],
                 }}
                 dataSource={guests}>
-                <Column
-                    key="id"
-                    render={() => (
-                        <Space size="middle">
-                            <p>{guests.id}</p>
-                        </Space>
-                    )}
-                />
+                <Column dataIndex="id" key="id" />
                 <Column
                     title="Фамилия"
                     dataIndex="last_name"
