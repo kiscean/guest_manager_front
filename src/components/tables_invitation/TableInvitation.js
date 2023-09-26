@@ -141,7 +141,7 @@ const TableInvitation = () => {
                 })
                 setGuests(newGuests);
             }).catch(() => {
-                alert("Something went wrong")
+                alert("Что-то пошло не так :(")
             })
     }
 

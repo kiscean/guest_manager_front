@@ -121,7 +121,7 @@ const TableRegEnter = () => {
 
     const getGuests = async () => {
 
-        const response = await axios.get('http://127.0.0.1:8000/api/guests/')
+        const response = await axios.get('http://127.0.0.1:8000/api/regenter/')
         setGuests(response.data)
     }
 
@@ -142,7 +142,6 @@ const TableRegEnter = () => {
                     pageSizeOptions: ['25', '50', '100'],
                 }}
                 dataSource={guests}>
-                <Column dataIndex="id" key="id" />
                 <Column
                     title="Фамилия"
                     dataIndex="last_name"
@@ -172,8 +171,11 @@ const TableRegEnter = () => {
                     sortDirections = {['descend', 'ascend']}
                 />
                 <Column
-                    title="Действие"
-                    dataIndex="invit_status"
+                    title="Время"
+                    dataIndex="time_create"
+                    key="id" />
+                <Column
+                    title="Вошел"
                     key="id"
                     render = {(_, record) => (
                         <CheckOutlined />
