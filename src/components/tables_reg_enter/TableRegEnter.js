@@ -1,69 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Highlighter from 'react-highlight-words';
 
-import {CheckOutlined, SearchOutlined} from '@ant-design/icons';
+import { CheckOutlined, SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 
 import './TableRegEnter.css';
-
-const data = [
-    {
-        key: '1',
-        lastname: 'Петроф',
-        firstname: 'Иван',
-        middlename: 'Васильевич',
-        phone: 89112265874,
-        status: 'guest',
-        regtime: '16:40',
-    },
-    {
-        key: '2',
-        lastname: 'Федоров',
-        firstname: 'Юрий',
-        middlename: 'Геннадьевич',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '12:10',
-    },
-    {
-        key: '3',
-        lastname: 'Маркин',
-        firstname: 'Сергей',
-        middlename: 'Владимирович',
-        phone: 89112265874,
-        status: 'guest',
-        regtime: '13:20',
-    },
-    {
-        key: '4',
-        lastname: 'Астафьева',
-        firstname: 'Нина',
-        middlename: 'Илларионовна',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '12:10',
-    },
-    {
-        key: '5',
-        lastname: 'Савина',
-        firstname: 'Юлианна',
-        middlename: 'Васильевна',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '11:10',
-    },
-    {
-        key: '6',
-        lastname: 'Сомов',
-        firstname: 'Федор',
-        middlename: 'Геннадьевич',
-        phone: 89112265874,
-        status: 'speacker',
-        regtime: '12:19',
-    },
-];
-
-
+import Column from "antd/es/table/Column";
+import axios from "axios";
 
 const TableRegEnter = () => {
 
@@ -173,62 +116,70 @@ const TableRegEnter = () => {
                 text
             ),
     });
-    const columns = [
-        {
-            dataIndex: 'key',
-            rowScope: 'row',
-            width: '50px',
-        },
 
-        {
-            title: 'ФИО',
-            ...getColumnSearchProps('lastname'),
-            render: (_, record) => (
-                <Space size="middle">
-                    <p>{record.lastname} {record.firstname} {record.middlename}</p>
-                </Space>
-            ),
-        },
-        {
-            title: 'Телефон',
-            className: 'column-display',
-            dataIndex: 'phone',
-            key: 'phone',
-        },
-        {
-            title: 'Статус',
-            dataIndex: 'status',
-            key: 'status',
-            sorter: true,
-            width: '15%',
-        },
-        {
-            title: 'Время регистрации',
-            dataIndex: 'regtime',
-            key: 'regtime',
-            sorter: true,
-            width: '10%',
-        },
-        {
-            title: 'Вход',
-            className: 'column-display',
-            render: () => <CheckOutlined />,
-            width: '40px',
-            align: 'center',
-        },
-    ];
+    const [guests, setGuests] = useState([])
+
+    const getGuests = async () => {
+
+        const response = await axios.get('http://127.0.0.1:8000/api/guests/')
+        setGuests(response.data)
+    }
+
+    useEffect(() => {
+        getGuests();
+    }, [])
 
     return (
         <div>
-            <h3 className='regentertable-title'>Прошедшие регистрацию</h3>
+            <h3 className='regentertable-title'>Заявки</h3>
             <Table
                 className='table'
-                columns={columns}
-                dataSource={data}
                 scroll={{
                     x: 350,
                 }}
-            />
+                pagination={{
+                    pageSize: 25,
+                    pageSizeOptions: ['25', '50', '100'],
+                }}
+                dataSource={guests}>
+                <Column dataIndex="id" key="id" />
+                <Column
+                    title="Фамилия"
+                    dataIndex="last_name"
+                    key="id"
+                    {...getColumnSearchProps('last_name')}
+                />
+                <Column
+                    title="Имя Отчество"
+                    key="id"
+                    render={(_, record) => (
+                        <Space size="middle">
+                            <p>{record.first_name} {record.middle_name}</p>
+                        </Space>
+                    )}
+                />
+                <Column
+                    className='column-display'
+                    title="Телефон"
+                    dataIndex="phone_guest"
+                    key="id" />
+                <Column
+                    title="Статус"
+                    dataIndex="guest_status"
+                    key="id"
+                    sorter={(a, b) => a.guest_status.length - b.guest_status.length }
+                    {...getColumnSearchProps('guest_status')}
+                    sortDirections = {['descend', 'ascend']}
+                />
+                <Column
+                    title="Действие"
+                    dataIndex="invit_status"
+                    key="id"
+                    render = {(_, record) => (
+                        <CheckOutlined />
+                    )}
+                />
+            </Table>
         </div>
     );
 }

@@ -8,6 +8,16 @@
     align-items: center;
 }
 
+.scanner-handsreg {
+    justify-content: center;
+    display: flex;
+    margin-top: 10ch;
+}
+
+.scanner-input {
+    width: 50ch;
+}
+
 #qrCodeContainer {
     position: relative;
     width: 200px;

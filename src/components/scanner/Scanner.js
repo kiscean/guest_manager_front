@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {Html5Qrcode} from "html5-qrcode";
 
 import './Scanner.css';
-import {Button} from "antd";
+import {Button, Input, Space} from "antd";
 
 const Scanner = () => {
     const [isEnabled, setEnabled] = useState(false);
@@ -46,6 +46,14 @@ const Scanner = () => {
             </div>
             <div className='button-center'>
                 <Button className='scaner__button' danger type='primary' size='large' onClick={() => setEnabled(!isEnabled)}>{isEnabled ? "Сканировать" : "Остановить"}</Button>
+            </div>
+            <div className='scanner-handsreg'>
+                <Space.Compact
+                    className='scanner-input'
+                >
+                    <Input defaultValue="UUID гостя" />
+                    <Button type="primary">Зарегистрировать</Button>
+                </Space.Compact>
             </div>
         </div>
     );
