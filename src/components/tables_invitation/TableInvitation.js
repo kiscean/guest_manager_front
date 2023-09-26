@@ -152,7 +152,7 @@ const TableInvitation = () => {
                 const middleName = response.data.middle_name
                 const emailGuest = response.data.email_guest
                 const invitStatus = response.data.invit_status
-                const qrCode = response.data.qr_code
+                const uuID = response.data.guest_uuid
 
                 let dataField = new FormData()
 
@@ -160,7 +160,7 @@ const TableInvitation = () => {
                 dataField.append('middle_name', middleName)
                 dataField.append('email_guest', emailGuest)
                 dataField.append('invit_status', invitStatus)
-                dataField.append('qr_code', qrCode)
+                dataField.append('guest_uuid', uuID)
 
                 axios({
                     method: 'post',
