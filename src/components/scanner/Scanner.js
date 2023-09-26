@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {Html5Qrcode} from "html5-qrcode";
 
 import './Scanner.css';
-import {Button, Input, Space} from "antd";
+import {Button, Input, Modal, Space} from "antd";
 import axios from "axios";
 
 const Scanner = () => {
@@ -39,6 +39,19 @@ const Scanner = () => {
             qrScanerStop();
         })
     }, [isEnabled])
+
+    const success = () => {
+        Modal.success({
+            content: 'Гость зарегистрирован',
+        });
+    };
+
+    const error = () => {
+        Modal.error({
+            title: 'Такой гость уже зарегистрирован',
+            content: 'Иван Иванович прибыл на мероприятие в 16:32',
+        });
+    };
 
     const [guests, setGuests] = useState([])
 
@@ -115,6 +128,13 @@ const Scanner = () => {
                     <Input defaultValue="UUID гостя" />
                     <Button type="primary">Зарегистрировать</Button>
                 </Space.Compact>
+            </div>
+
+            <div>
+                <Space wrap>
+                    <Button onClick={success}>Success</Button>
+                    <Button onClick={error}>Error</Button>
+                </Space>
             </div>
         </div>
     );
