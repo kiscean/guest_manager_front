@@ -54,10 +54,11 @@ const Scanner = () => {
     };
 
     const [guests, setGuests] = useState([])
+    const [search, setSearch] = useState("")
 
     const getGuests = async () => {
 
-        const response = await axios.get('http://127.0.0.1:8000/api/guests/')
+        const response = await axios.get('http://172.22.228.83:8000/api/guests/')
         setGuests(response.data)
     }
 
@@ -66,7 +67,7 @@ const Scanner = () => {
     }, [])
 
     const handleUpdateInvitation = async (id, value) => {
-        return axios.patch(`http://127.0.0.1:8000/api/guests/${id}/`, value)
+        return axios.patch(`http://172.22.228.83:8000/api/guests/${id}/`, value)
             .then((res) => {
                 const { data } = res;
                 const newGuests = guests.map(t => {
@@ -82,7 +83,7 @@ const Scanner = () => {
     }
 
     const addInvitationInfo = async (id) => {
-        await axios.get(`http://127.0.0.1:8000/api/guests/${id}/`)
+        await axios.get(`http://172.22.228.83:8000/api/guests/${id}/`)
             .then(response => {
                 const uuID = response.data.guest_uuid
                 const lastName = response.data.last_name
@@ -102,7 +103,7 @@ const Scanner = () => {
 
                 axios({
                     method: 'post',
-                    url: 'http://127.0.0.1:8000/api/regenter/',
+                    url: 'http://172.22.228.83:8000/api/regenter/',
                     data: dataField
                 }).then((response) => {
                     console.log(response.data);
@@ -111,6 +112,14 @@ const Scanner = () => {
                 console.log(FormData)
             })
     }
+
+    const [open, setOpen] = useState(false);
+    const showModal = () => {
+        setOpen(true);
+    };
+    const hideModal = () => {
+        setOpen(false);
+    };
 
     return (
         <div>
@@ -125,14 +134,32 @@ const Scanner = () => {
                 <Space.Compact
                     className='scanner-input'
                 >
-                    <Input defaultValue="UUID гостя" />
-                    <Button type="primary">Зарегистрировать</Button>
+                    <Input defaultValue="UUID гостя" onChange={(e)=>setSearch((e.target.value))}/>
+                    {guests.filter((guest) => {
+                        if(guest.guest_uuid.toLowerCase().includes(search.toLowerCase())){
+                        return guest
+                        }
+                    })}
+                    <Button type="primary">Определить</Button>
                 </Space.Compact>
             </div>
 
             <div>
+                <Button type="primary" onClick={showModal}>
+                    Modal
+                </Button>
+                <Modal
+                    title="Регистрация входа"
+                    open={open}
+                    onOk={hideModal}
+                    onCancel={hideModal}
+                    okText="Зарегистрировать"
+                    cancelText="Позже"
+                >
+                    <p>Иван Иванович Иванов</p>
+                    <p>Сотрудник ЗАСЛОН</p>
+                </Modal>
                 <Space wrap>
-                    <Button onClick={success}>Success</Button>
                     <Button onClick={error}>Error</Button>
                 </Space>
             </div>
