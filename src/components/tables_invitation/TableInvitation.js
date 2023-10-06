@@ -3,7 +3,7 @@ import axios from "axios";
 import Highlighter from 'react-highlight-words';
 
 import Column from "antd/es/table/Column";
-import {CheckCircleOutlined, SearchOutlined, StopOutlined} from '@ant-design/icons';
+import {CheckCircleOutlined, QuestionCircleOutlined, SearchOutlined, StopOutlined} from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 
 import './TableInvitation.css';
@@ -240,6 +240,13 @@ const TableInvitation = () => {
                                 onClick={() => { handleUpdateInvitation(record.id, {invit_status: '2'}) }}
                             >
                                 <StopOutlined className={record.invit_status == 2 ? 'invitationtable-button__icon-red' : ''}/>
+                            </Button>
+                            <Button
+                                disabled={record.invit_status == 0 ? false : true}
+                                type="primary" danger ghost
+                                onClick={() => { handleUpdateInvitation(record.id, {invit_status: '3'}) }}
+                            >
+                                <QuestionCircleOutlined className={record.invit_status == 3 ? 'invitationtable-button__icon-red' : ''}/>
                             </Button>
                             <Button
                                 disabled={record.send_message == true ? true : false}
