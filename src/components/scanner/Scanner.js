@@ -131,23 +131,19 @@ const Scanner = () => {
                 <Button className='scaner__button' danger type='primary' size='large' onClick={() => setEnabled(!isEnabled)}>{isEnabled ? "Сканировать" : "Остановить"}</Button>
             </div>
             <div className='scanner-handsreg'>
+                <Button type="primary" onClick={showModal}>
+                    Зарегистрировать вручную
+                </Button>
                 <Space.Compact
                     className='scanner-input'
                 >
+
                     <Input defaultValue="UUID гостя" onChange={(e)=>setSearch((e.target.value))}/>
-                    {guests.filter((guest) => {
-                        if(guest.guest_uuid.toLowerCase().includes(search.toLowerCase())){
-                        return guest
-                        }
-                    })}
                     <Button type="primary">Определить</Button>
                 </Space.Compact>
             </div>
 
             <div>
-                <Button type="primary" onClick={showModal}>
-                    Modal
-                </Button>
                 <Modal
                     title="Регистрация входа"
                     open={open}

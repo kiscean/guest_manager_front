@@ -12,7 +12,7 @@ const TableIntroreg = () => {
 
     const getGuests = async () => {
         const response = await axios.get('http://172.22.228.83:8000/api/guests/')
-        setGuests(response.data)
+            setGuests(response.data)
     }
 
     useEffect(() => {
