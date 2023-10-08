@@ -40,25 +40,12 @@ const Scanner = () => {
         })
     }, [isEnabled])
 
-    const success = () => {
-        Modal.success({
-            content: 'Гость зарегистрирован',
-        });
-    };
-
-    const error = () => {
-        Modal.error({
-            title: 'Такой гость уже зарегистрирован',
-            content: 'Иван Иванович прибыл на мероприятие в 16:32',
-        });
-    };
-
     const [guests, setGuests] = useState([])
     const [search, setSearch] = useState("")
 
     const getGuests = async () => {
 
-        const response = await axios.get('http://172.22.228.83:8000/api/guests/')
+        const response = await axios.get('http://127.0.0.1:8000/api/guests/')
         setGuests(response.data)
     }
 
@@ -67,7 +54,7 @@ const Scanner = () => {
     }, [])
 
     const handleUpdateInvitation = async (id, value) => {
-        return axios.patch(`http://172.22.228.83:8000/api/guests/${id}/`, value)
+        return axios.patch(`http://127.0.0.1:8000/api/guests/${id}/`, value)
             .then((res) => {
                 const { data } = res;
                 const newGuests = guests.map(t => {
@@ -83,7 +70,7 @@ const Scanner = () => {
     }
 
     const addInvitationInfo = async (id) => {
-        await axios.get(`http://172.22.228.83:8000/api/guests/${id}/`)
+        await axios.get(`http://127.0.0.1:8000/api/guests/${id}/`)
             .then(response => {
                 const uuID = response.data.guest_uuid
                 const lastName = response.data.last_name
@@ -103,7 +90,7 @@ const Scanner = () => {
 
                 axios({
                     method: 'post',
-                    url: 'http://172.22.228.83:8000/api/regenter/',
+                    url: 'http://127.0.0.1:8000/api/regenter/',
                     data: dataField
                 }).then((response) => {
                     console.log(response.data);
@@ -113,14 +100,6 @@ const Scanner = () => {
             })
     }
 
-    const [open, setOpen] = useState(false);
-    const showModal = () => {
-        setOpen(true);
-    };
-    const hideModal = () => {
-        setOpen(false);
-    };
-
     return (
         <div>
             <div className='scanner'>
@@ -129,35 +108,6 @@ const Scanner = () => {
             </div>
             <div className='button-center'>
                 <Button className='scaner__button' danger type='primary' size='large' onClick={() => setEnabled(!isEnabled)}>{isEnabled ? "Сканировать" : "Остановить"}</Button>
-            </div>
-            <div className='scanner-handsreg'>
-                <Button type="primary" onClick={showModal}>
-                    Зарегистрировать вручную
-                </Button>
-                <Space.Compact
-                    className='scanner-input'
-                >
-
-                    <Input defaultValue="UUID гостя" onChange={(e)=>setSearch((e.target.value))}/>
-                    <Button type="primary">Определить</Button>
-                </Space.Compact>
-            </div>
-
-            <div>
-                <Modal
-                    title="Регистрация входа"
-                    open={open}
-                    onOk={hideModal}
-                    onCancel={hideModal}
-                    okText="Зарегистрировать"
-                    cancelText="Позже"
-                >
-                    <p>Иван Иванович Иванов</p>
-                    <p>Сотрудник ЗАСЛОН</p>
-                </Modal>
-                <Space wrap>
-                    <Button onClick={error}>Error</Button>
-                </Space>
             </div>
         </div>
     );

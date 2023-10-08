@@ -120,9 +120,10 @@ const TableRegEnter = () => {
     const [guests, setGuests] = useState([])
 
     const getGuests = async () => {
-
-        const response = await axios.get('http://127.0.0.1:8000/api/regenter/')
+        const response = await axios.get('http://127.0.0.1:8000/api/guests/')
+        console.log(response.data)
         setGuests(response.data)
+
     }
 
     useEffect(() => {
@@ -131,7 +132,7 @@ const TableRegEnter = () => {
 
     return (
         <div>
-            <h3 className='regentertable-title'>Заявки</h3>
+            <h3 className='regentertable-title'>Зарегистрировались</h3>
             <Table
                 className='table'
                 scroll={{
