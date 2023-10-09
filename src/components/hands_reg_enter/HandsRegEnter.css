@@ -1,0 +1,42 @@
+.regenter-title {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    padding-top: 50px;
+}
+
+.regenter-zone {
+    padding-bottom: 7ch;
+    justify-content: center;
+    display: flex;
+}
+
+.regenter-input {
+    width: 50ch;
+}
+
+.regenter-results {
+    min-height: 5ch;
+    max-height: 25ch;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid gainsboro;
+    border-radius: 20px;
+}
+
+.regenter-results__name {
+    margin: 3ch 0 3ch 0;
+    padding: 0 20px;
+}
+
+.regenter-results__button {
+    margin: 26px 0 0.5ch 0;
+    padding: 0 20px;
+}
+
+.regenter-results__name-bold {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 900px) {
+
+}

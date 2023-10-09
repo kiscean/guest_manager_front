@@ -11,7 +11,7 @@ const TableIntroreg = () => {
     const [guests, setGuests] = useState([])
 
     const getGuests = async () => {
-        const response = await axios.get('http://127.0.0.1:8000/api/guests/')
+        const response = await axios.get('http://172.22.228.83:8000/api/guests/')
             setGuests(response.data)
     }
 
