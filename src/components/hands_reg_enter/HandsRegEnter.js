@@ -116,7 +116,7 @@ const HandsRegEnter = () => {
                                         <Col span={16} className='regenter-results__name'>
                                             <div className='regenter-results__name-bold'>{result.first_name + " " + result.middle_name}</div>
                                             <div className='regenter-results__name-bold'>{result.last_name}</div>
-                                            <div>{result.guest_status}</div>
+                                            <div className='regenter-results__status'>{result.guest_status}</div>
                                         </Col>
                                         <Col span={8} className='regenter-results__button'>
                                             <Button
@@ -129,12 +129,12 @@ const HandsRegEnter = () => {
                                             </Button>
                                         </Col>
                                     </Row>
+                                    <Divider className='regenter-divider' />
                                     <div>
                                         <Modal
                                             title="Зарегистрирован"
                                             open={open}
                                             onOk={hideModal}
-                                            onCancel={hideModal}
                                             okText="ОК"
                                         >
                                             <h3>{result.last_name + " " + result.first_name + " " + result.middle_name}</h3>

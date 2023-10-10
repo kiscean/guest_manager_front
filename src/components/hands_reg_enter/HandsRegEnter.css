@@ -30,12 +30,23 @@
 }
 
 .regenter-results__button {
-    margin: 26px 0 0.5ch 0;
-    padding: 0 20px;
+    margin: 35px 0 0.5ch 0;
 }
 
 .regenter-results__name-bold {
     font-weight: bold;
+    font-size: 17px;
+}
+
+.regenter-results__status {
+    font-size: 12px;
+    color: rgba(116, 128, 140, 0.45);
+    margin-top: 6px;
+}
+
+.regenter-divider {
+    margin: 0;
+    padding: 0 5ch;
 }
 
 @media screen and (min-width: 450px) {
