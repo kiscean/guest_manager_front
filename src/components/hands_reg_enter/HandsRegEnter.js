@@ -80,7 +80,8 @@ const HandsRegEnter = () => {
                 const lastName = response.data.last_name
                 const firstName = response.data.first_name
                 const middleName = response.data.middle_name
-                const invitStatus = response.data.invit_status
+                const guestPhone = response.data.phone_guest
+                const guestStatus = response.data.guest_status
                 const uuID = response.data.guest_uuid
 
                 let dataField = new FormData()
@@ -88,7 +89,8 @@ const HandsRegEnter = () => {
                 dataField.append('last_name', lastName)
                 dataField.append('first_name', firstName)
                 dataField.append('middle_name', middleName)
-                dataField.append('invit_status', invitStatus)
+                dataField.append('phone_guest', guestPhone)
+                dataField.append('guest_status', guestStatus)
                 dataField.append('guest_uuid', uuID)
 
                 axios({
@@ -104,8 +106,6 @@ const HandsRegEnter = () => {
     }
 
     const [results, setResults] = useState([]);
-
-
 
     return(
         <div>
@@ -132,12 +132,16 @@ const HandsRegEnter = () => {
                                             <div>{result.guest_status}</div>
                                         </Col>
                                         <Col span={10} className='regenter-results__button'>
-                                            <Button type="primary" size="large" onClick={() => {addEnterRegInfo(result.id); handleUpdateRegEnter(result.id, {enter_status: 'True'});} }>
+                                            <Button
+                                                type="primary"
+                                                size="large"
+                                                disabled={result.enter_status === true ? true : false}
+                                                onClick={() => {addEnterRegInfo(result.id); handleUpdateRegEnter(result.id, {enter_status: 'True'});}}
+                                            >
                                                 Регистрация
                                             </Button>
                                         </Col>
                                     </Row>
-
                                 </div>
                             ))
                         }
