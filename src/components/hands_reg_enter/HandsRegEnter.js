@@ -8,19 +8,6 @@ import './HandsRegEnter.css';
 
 const HandsRegEnter = () => {
 
-    const success = () => {
-        Modal.success({
-            content: 'Гость зарегистрирован',
-        });
-    };
-
-    const error = () => {
-        Modal.error({
-            title: 'Такой гость уже зарегистрирован',
-            content: 'Иван Иванович прибыл на мероприятие в 16:32',
-        });
-    };
-
     const [open, setOpen] = useState(false);
     const showModal = () => {
         setOpen(true);
@@ -126,45 +113,40 @@ const HandsRegEnter = () => {
                             results.map((result, id) => (
                                 <div key={id}>
                                     <Row justify={"center"}>
-                                        <Col span={14} className='regenter-results__name'>
+                                        <Col span={16} className='regenter-results__name'>
                                             <div className='regenter-results__name-bold'>{result.first_name + " " + result.middle_name}</div>
                                             <div className='regenter-results__name-bold'>{result.last_name}</div>
                                             <div>{result.guest_status}</div>
                                         </Col>
-                                        <Col span={10} className='regenter-results__button'>
+                                        <Col span={8} className='regenter-results__button'>
                                             <Button
                                                 type="primary"
                                                 size="large"
                                                 disabled={result.enter_status === true ? true : false}
-                                                onClick={() => {addEnterRegInfo(result.id); handleUpdateRegEnter(result.id, {enter_status: 'True'});}}
+                                                onClick={() => {showModal(); addEnterRegInfo(result.id); handleUpdateRegEnter(result.id, {enter_status: 'True'});}}
                                             >
-                                                Регистрация
+                                                Вход
                                             </Button>
                                         </Col>
                                     </Row>
+                                    <div>
+                                        <Modal
+                                            title="Зарегистрирован"
+                                            open={open}
+                                            onOk={hideModal}
+                                            onCancel={hideModal}
+                                            okText="ОК"
+                                        >
+                                            <h3>{result.last_name + " " + result.first_name + " " + result.middle_name}</h3>
+                                            <p>{result.guest_status}</p>
+                                        </Modal>
+                                    </div>
                                 </div>
                             ))
                         }
                     </div>
                 </Space>
             </div>
-
-                <div>
-                    <Modal
-                        title="Регистрация входа"
-                        open={open}
-                        onOk={hideModal}
-                        onCancel={hideModal}
-                        okText="Зарегистрировать"
-                        cancelText="Позже"
-                    >
-                        <p>Иван Иванович Иванов</p>
-                        <p>Сотрудник ЗАСЛОН</p>
-                    </Modal>
-                    <Space wrap>
-                        <Button onClick={error}>Error</Button>
-                    </Space>
-                </div>
         </div>
     );
 };
