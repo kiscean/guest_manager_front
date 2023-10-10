@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-import {Button, Col, Divider, Input, Modal, Row, Space, message} from "antd";
+import {Button, Col, Divider, Input, Row, Space, message} from "antd";
 import axios from "axios";
 import {SearchOutlined} from "@ant-design/icons";
 
@@ -12,7 +12,7 @@ const HandsRegEnter = () => {
     const success = (a, b, c) => {
         messageApi.open({
             type: 'success',
-            content: a + ' ' + b + ' ' + c + ' ' + 'зарегистрирован(а)!',
+            content: `${a} ${b} ${c} зарегистрирован(а)!`,
         });
     };
 

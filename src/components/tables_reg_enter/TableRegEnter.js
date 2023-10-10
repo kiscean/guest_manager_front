@@ -173,6 +173,7 @@ const TableRegEnter = () => {
                 <Column
                     title="Время"
                     dataIndex="time_create"
+
                     key="id" />
                 <Column
                     title="Вошел"
