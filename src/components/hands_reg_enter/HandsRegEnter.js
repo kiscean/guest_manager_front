@@ -12,7 +12,7 @@ const HandsRegEnter = () => {
     const success = (a, b, c) => {
         messageApi.open({
             type: 'success',
-            content: a + ' ' + b + ' ' + c + ' ' + 'зарегистрирован!',
+            content: a + ' ' + b + ' ' + c + ' ' + 'зарегистрирован(а)!',
         });
     };
 
