@@ -173,8 +173,14 @@ const TableRegEnter = () => {
                 <Column
                     title="Время"
                     dataIndex="time_create"
-
-                    key="id" />
+                    render={(_, record) => (
+                        <Space size="middle">
+                            <p> {new Date(record.time_create).toLocaleTimeString()} </p>
+                            {/*<p> {new Date(record.time_create).toLocaleDateString()} </p>*/}
+                        </Space>
+                    )}
+                    key="id"
+                />
                 <Column
                     title="Вошел"
                     key="id"
