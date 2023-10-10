@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-import {Button, Col, Divider, Input, Modal, Row, Space} from "antd";
+import {Button, Col, Divider, Input, Modal, Row, Space, message} from "antd";
 import axios from "axios";
 import {SearchOutlined} from "@ant-design/icons";
 
@@ -8,12 +8,20 @@ import './HandsRegEnter.css';
 
 const HandsRegEnter = () => {
 
-    const [open, setOpen] = useState(false);
-    const showModal = () => {
-        setOpen(true);
-    };
-    const hideModal = () => {
-        setOpen(false);
+    const [loadings, setLoadings] = useState([]);
+    const enterLoading = (index) => {
+        setLoadings((prevLoadings) => {
+            const newLoadings = [...prevLoadings];
+            newLoadings[index] = true;
+            return newLoadings;
+        });
+        setTimeout(() => {
+            setLoadings((prevLoadings) => {
+                const newLoadings = [...prevLoadings];
+                newLoadings[index] = false;
+                return newLoadings;
+            });
+        }, 1000);
     };
 
     const [guests, setGuests] = useState([])
@@ -86,7 +94,9 @@ const HandsRegEnter = () => {
                     data: dataField
                 }).then((response) => {
                     console.log(response.data);
-                    window.location.reload();
+                    setTimeout(function (){
+                        window.location.reload();
+                    }, 1000)
                 })
                 console.log(FormData)
             })
@@ -122,25 +132,15 @@ const HandsRegEnter = () => {
                                             <Button
                                                 type="primary"
                                                 size="large"
+                                                loading={loadings[0]}
                                                 disabled={result.enter_status === true ? true : false}
-                                                onClick={() => {showModal(); addEnterRegInfo(result.id); handleUpdateRegEnter(result.id, {enter_status: 'True'});}}
+                                                onClick={() => {enterLoading(0); addEnterRegInfo(result.id); handleUpdateRegEnter(result.id, {enter_status: 'True'});}}
                                             >
                                                 Вход
                                             </Button>
                                         </Col>
                                     </Row>
                                     <Divider className='regenter-divider' />
-                                    <div>
-                                        <Modal
-                                            title="Зарегистрирован"
-                                            open={open}
-                                            onOk={hideModal}
-                                            okText="ОК"
-                                        >
-                                            <h3>{result.last_name + " " + result.first_name + " " + result.middle_name}</h3>
-                                            <p>{result.guest_status}</p>
-                                        </Modal>
-                                    </div>
                                 </div>
                             ))
                         }
