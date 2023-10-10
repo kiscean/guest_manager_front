@@ -8,6 +8,14 @@ import './HandsRegEnter.css';
 
 const HandsRegEnter = () => {
 
+    const [messageApi, contextHolder] = message.useMessage();
+    const success = (a, b, c) => {
+        messageApi.open({
+            type: 'success',
+            content: a + ' ' + b + ' ' + c + ' ' + 'гость зарегистрирован!',
+        });
+    };
+
     const [loadings, setLoadings] = useState([]);
     const enterLoading = (index) => {
         setLoadings((prevLoadings) => {
@@ -106,6 +114,7 @@ const HandsRegEnter = () => {
 
     return(
         <div>
+            {contextHolder}
             <h3 className='regenter-title'>Регистрация</h3>
             <div className='regenter-zone'>
                 <Space direction={"vertical"}>
@@ -134,7 +143,7 @@ const HandsRegEnter = () => {
                                                 size="large"
                                                 loading={loadings[0]}
                                                 disabled={result.enter_status === true ? true : false}
-                                                onClick={() => {enterLoading(0); addEnterRegInfo(result.id); handleUpdateRegEnter(result.id, {enter_status: 'True'});}}
+                                                onClick={() => {success(result.last_name, result.first_name, result.middle_name); enterLoading(0); addEnterRegInfo(result.id); handleUpdateRegEnter(result.id, {enter_status: 'True'});}}
                                             >
                                                 Вход
                                             </Button>
