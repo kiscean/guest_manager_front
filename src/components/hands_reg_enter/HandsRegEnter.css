@@ -11,7 +11,7 @@
 }
 
 .regenter-input {
-    width: 50ch;
+    max-width: 50ch;
 }
 
 .regenter-results {
