@@ -141,7 +141,10 @@ const TableRegEnter = () => {
                     pageSizeOptions: ['25', '50', '100'],
                 }}
                 dataSource={guests}>
-                <Column dataIndex="id" key="id" />
+                <Column
+                    key="id"
+
+                />
                 <Column
                     title="Фамилия"
                     dataIndex="last_name"

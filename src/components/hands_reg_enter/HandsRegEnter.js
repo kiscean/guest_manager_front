@@ -36,7 +36,7 @@ const HandsRegEnter = () => {
     const [input, setInput] = useState("");
 
     const fetchGuests = (value) => {
-        fetch('http://172.22.228.83:8000/api/guests/')
+        fetch(process.env.REACT_APP_API_URL+'guests/')
             .then((response) => response.json())
             .then((json) => {
                 const results = json.filter((guest) => {
@@ -53,7 +53,7 @@ const HandsRegEnter = () => {
 
     const getGuests = async () => {
 
-        const response = await axios.get('http://172.22.228.83:8000/api/guests/')
+        const response = await axios.get(process.env.REACT_APP_API_URL+'guests/')
         setGuests(response.data)
     }
 
@@ -62,7 +62,7 @@ const HandsRegEnter = () => {
     }, [])
 
     const handleUpdateRegEnter = async (id, value) => {
-        return axios.patch(`http://172.22.228.83:8000/api/guests/${id}/`, value)
+        return axios.patch(process.env.REACT_APP_API_URL+`guests/${id}/`, value)
             .then((res) => {
                 const { data } = res;
                 const newGuests = guests.map(t => {
@@ -78,7 +78,7 @@ const HandsRegEnter = () => {
     }
 
     const addEnterRegInfo = async (id) => {
-        await axios.get(`http://172.22.228.83:8000/api/guests/${id}/`)
+        await axios.get(process.env.REACT_APP_API_URL+`guests/${id}/`)
             .then(response => {
                 const lastName = response.data.last_name
                 const firstName = response.data.first_name
@@ -98,7 +98,7 @@ const HandsRegEnter = () => {
 
                 axios({
                     method: 'post',
-                    url: 'http://172.22.228.83:8000/api/regenter/',
+                    url: process.env.REACT_APP_API_URL+'regenter/',
                     data: dataField
                 }).then((response) => {
                     console.log(response.data);
