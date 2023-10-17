@@ -120,7 +120,7 @@ const TableRegEnter = () => {
     const [guests, setGuests] = useState([])
 
     const getGuests = async () => {
-        const response = await axios.get('http://172.22.228.83:8000/api/regenter/')
+        const response = await axios.get(process.env.REACT_APP_API_URL+'regenter/')
         setGuests(response.data)
     }
 

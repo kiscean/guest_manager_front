@@ -28,7 +28,7 @@ const RegForm = () => {
 
         await axios({
             method: 'post',
-            url: 'http://172.22.228.83:8000/api/guests/',
+            url: process.env.REACT_APP_API_URL+'guests/',
             data: formField
         }).then((response) => {
            console.log(response.data);

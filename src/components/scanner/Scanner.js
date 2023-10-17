@@ -45,7 +45,7 @@ const Scanner = () => {
 
     const getGuests = async () => {
 
-        const response = await axios.get('http://172.22.228.83:8000/api/guests/')
+        const response = await axios.get(process.env.REACT_APP_API_URL+'guests/')
         setGuests(response.data)
     }
 
@@ -54,7 +54,7 @@ const Scanner = () => {
     }, [])
 
     const handleUpdateInvitation = async (id, value) => {
-        return axios.patch(`http://172.22.228.83:8000/api/guests/${id}/`, value)
+        return axios.patch(process.env.REACT_APP_API_URL+`guests/${id}/`, value)
             .then((res) => {
                 const { data } = res;
                 const newGuests = guests.map(t => {
@@ -70,7 +70,7 @@ const Scanner = () => {
     }
 
     const addInvitationInfo = async (id) => {
-        await axios.get(`http://172.22.228.83:8000/api/guests/${id}/`)
+        await axios.get(process.env.REACT_APP_API_URL+`guests/${id}/`)
             .then(response => {
                 const uuID = response.data.guest_uuid
                 const lastName = response.data.last_name
@@ -90,7 +90,7 @@ const Scanner = () => {
 
                 axios({
                     method: 'post',
-                    url: 'http://172.22.228.83:8000/api/regenter/',
+                    url: process.env.REACT_APP_API_URL+'regenter/',
                     data: dataField
                 }).then((response) => {
                     console.log(response.data);

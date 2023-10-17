@@ -121,7 +121,7 @@ const TableInvitation = () => {
 
     const getGuests = async () => {
 
-        const response = await axios.get('http://172.22.228.83:8000/api/guests/')
+        const response = await axios.get(process.env.REACT_APP_API_URL+'guests/')
         setGuests(response.data)
     }
 
@@ -130,7 +130,7 @@ const TableInvitation = () => {
     }, [])
 
     const handleUpdateInvitation = async (id, value) => {
-        return axios.patch(`http://172.22.228.83:8000/api/guests/${id}/`, value)
+        return axios.patch(process.env.REACT_APP_API_URL+`guests/${id}/`, value)
             .then((res) => {
                 const { data } = res;
                 const newGuests = guests.map(t => {
@@ -146,7 +146,7 @@ const TableInvitation = () => {
     }
 
     const addInvitationInfo = async (id) => {
-        await axios.get(`http://172.22.228.83:8000/api/guests/${id}/`)
+        await axios.get(process.env.REACT_APP_API_URL+`guests/${id}/`)
             .then(response => {
                 const firstName = response.data.first_name
                 const middleName = response.data.middle_name
@@ -164,7 +164,7 @@ const TableInvitation = () => {
 
                 axios({
                     method: 'post',
-                    url: 'http://172.22.228.83:8000/api/invitation/',
+                    url: process.env.REACT_APP_API_URL+'invitation/',
                     data: dataField
                 }).then((response) => {
                     console.log(response.data);
